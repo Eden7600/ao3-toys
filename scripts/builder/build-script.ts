@@ -21,6 +21,8 @@ export async function buildScript(args: Args, entry: string, outPath: string) {
       },
     },
     configFile: false,
+    // Without this, everything in public/ is copied into each script's outDir.
+    publicDir: false,
     build: {
       sourcemap: isDev ? "inline" : false,
       minify: false,
