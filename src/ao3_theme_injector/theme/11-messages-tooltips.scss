@@ -100,7 +100,7 @@ form dd.required,
 }
 
 .mce-container input:focus {
-  background: #f3efec;
+  background: var(--editor-focus-background);
 }
 
 /* help buttons get weird in the sidebar so this is a shrink ray */

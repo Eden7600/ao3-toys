@@ -1,0 +1,125 @@
+// Work blurbs: raised cards (softened surface0) on the base pane, with
+// mantle insets for summaries. Structural cleanup (commas, spacing,
+// symbol blocks) mirrors the toybox look.
+
+#main li.blurb {
+  background: var(--card-background-color);
+  border-color: transparent;
+  border-radius: 0.5em;
+  padding: 0.65em 1em;
+  margin: 1em 0;
+}
+
+/* Summary quotes recess below the mantle card with an accent bar */
+.blurb blockquote.userstuff.summary,
+.blurb blockquote {
+  background: var(--ctp-crust);
+  border: 0;
+  border-left: 3px solid
+    color-mix(in srgb, var(--ctp-accent) 65%, transparent);
+  border-radius: 0 0.5em 0.5em 0;
+  margin: 0.5em auto 1em auto;
+  padding: 0.5em 0.9em;
+}
+
+.blurb .datetime,
+.datetime {
+  font-size: small;
+  line-height: 1.25;
+}
+
+ul.required-tags,
+.blurb .icon,
+.bookmark .status span {
+  border: 0;
+  opacity: 0.9;
+}
+
+.bookmark .status span {
+  border-color: var(--ctp-surface1);
+}
+
+/* Stats: quiet labels, readable values */
+.blurb dl.stats {
+  margin-top: 1em;
+  margin-bottom: 0.55em;
+  line-height: 1.25;
+}
+
+.blurb dl.stats dt {
+  color: var(--ctp-subtext0);
+}
+
+.blurb .actions li {
+  padding: 0 0.25em 0 0;
+}
+
+.blurb .header .heading {
+  margin: 0.375em 5.25em 0 65px;
+}
+
+.bookmark .user {
+  border: 0;
+  margin-top: 0.65em;
+  padding: 0.429em 0.75em;
+  overflow: hidden;
+}
+
+/* Tag lists keep their density; commas disappear because bubbles */
+.commas li::after {
+  content: none;
+}
+
+.tags.commas {
+  margin: 0.5em 0;
+}
+
+.meta dd ul li {
+  padding-right: 0.5em;
+  padding-left: 0;
+}
+
+/* De-bubble bookmarker tags into dotted-underline links */
+.bookmark.blurb .meta.tags.commas a.tag {
+  background: revert;
+  border: 0;
+  border-bottom: 1px dotted var(--ctp-blue);
+  border-radius: revert;
+  color: var(--ctp-blue);
+  display: inline;
+  padding: revert;
+}
+
+.bookmark.blurb .meta.tags.commas a.tag:hover {
+  color: var(--ao3-accent-color-light);
+}
+
+.meta.tags.commas .tag:hover,
+.meta.tags.commas .tag:visited:hover {
+  background: transparent;
+  color: var(--ao3-accent-color-light);
+}
+
+.summary.userstuff blockquote {
+  margin: 0 1.5em !important;
+  padding: 0.25em 0.75em;
+}
+
+.user.module.group {
+  background: transparent;
+  margin-top: 0.75em;
+  padding: 0.375em 0 0 0;
+}
+
+/* Default gray wells on history/bookmark items */
+.reading h4.viewed {
+  background: var(--ctp-mantle);
+}
+
+.item dl.visibility {
+  background: var(--ctp-mantle);
+}
+
+.bookmark .count a {
+  color: var(--ctp-blue);
+}

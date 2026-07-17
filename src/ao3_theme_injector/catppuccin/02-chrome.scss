@@ -1,0 +1,283 @@
+// Chrome: header and footer sit level with the body on base — no darker
+// band — separated from the page by a surface hairline. The brand heading
+// carries the accent; nav interactions elevate to surface tones, dropdown
+// panels float at surface0.
+
+#header {
+  background: var(--ctp-base) !important;
+  border-bottom: 1px solid var(--ctp-surface0);
+  color: var(--ctp-text);
+  font-size: 0.875em;
+  margin: unset;
+  padding: 0;
+  position: relative;
+}
+
+#header .heading {
+  float: left;
+  padding: 0.375em;
+}
+
+#header li {
+  display: block;
+  float: left;
+  position: relative;
+}
+
+#header a,
+#header a:visited,
+#header .heading a:visited,
+#header .primary .open a,
+#header .primary .open a:focus,
+#header .primary .dropdown:hover a,
+#header .user a:focus {
+  color: var(--ctp-text);
+}
+
+/* Brand: "Archive of Our Own" in the chosen accent */
+#header .heading a {
+  color: var(--ctp-accent);
+  font-size: 1.714em;
+  line-height: 1.75;
+}
+
+#header .heading sup {
+  font-size: 0.583em;
+  font-style: italic;
+}
+
+#header .logo {
+  float: left;
+  height: 42px;
+}
+
+#header .heading a:focus,
+#header .heading a:hover,
+#header .heading a:hover:visited,
+#header .heading a:active {
+  color: var(--ao3-accent-color-light);
+}
+
+#header .landmark {
+  clear: none;
+  font-size: 0;
+  border: 0;
+}
+
+/* Primary nav strip: the default skin paints it #900 with a texture tile
+   and white link text, so both the background and the link color must be
+   retaken (white would vanish on Latte's light mantle) */
+#header .primary {
+  background: var(--ctp-base);
+  padding: 0 0;
+  width: 100%;
+}
+
+#header .primary a,
+#header .primary a:visited,
+#header .primary .menu a {
+  color: var(--ctp-text);
+}
+
+#header .user a:hover,
+#header .user a:focus {
+  color: var(--ctp-text);
+}
+
+#header ul.primary {
+  border-radius: 0 !important;
+}
+
+#header .menu,
+#greeting .menu {
+  padding: 0;
+}
+
+#header .menu li {
+  border-bottom: 0;
+  margin: 0 0.25em;
+  text-align: left;
+}
+
+#header .menu li:last-child {
+  border-bottom: 0;
+}
+
+#header .actions a {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+/* Nav hover/open elevates one step */
+#header .actions a:hover,
+#header .actions a:focus,
+#header .dropdown:hover a,
+#header .open a,
+#small_login {
+  background: var(--ctp-surface0);
+  color: var(--ctp-text);
+}
+
+#small_login {
+  border-color: var(--ctp-surface1);
+}
+
+/* Dropdown panels float at surface0 with a hairline */
+#header .dropdown-menu {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+}
+
+#header .dropdown .menu a,
+#greeting .dropdown .menu a {
+  background: var(--ctp-surface0);
+  border-color: var(--ctp-surface0);
+  color: var(--ctp-text);
+  display: block;
+  padding: 0.75em 0.5em 0.75em 0.5em;
+}
+
+#header .dropdown .menu a:focus,
+#header .dropdown .menu a:hover,
+#greeting .dropdown .menu a:hover {
+  background: var(--ctp-surface1);
+  border-radius: 0;
+  color: var(--ctp-text);
+}
+
+#header .dropdown .menu li {
+  border: 0;
+  margin: auto;
+}
+
+#header .user a {
+  background: transparent;
+  border: transparent;
+}
+
+#header .user .dropdown-toggle {
+  border-radius: 0.25em 0.25em 0 0 !important;
+}
+
+/** Search **/
+
+#header .search {
+  float: right;
+  color: var(--ctp-text);
+  margin-right: 0.25em;
+}
+
+#header #search .text,
+#header #search .button {
+  border: 0;
+}
+
+#header #search .text {
+  margin: 0.3em 0.43em;
+}
+
+#header #search .button {
+  border-radius: 1em;
+  margin: 0;
+}
+
+/* Search input recesses below the chrome */
+#header #search .text,
+#header #search .text:active {
+  background: var(--ctp-mantle);
+}
+
+#header #search input:focus,
+#header #search .text:focus,
+#header #search .text:hover {
+  background: var(--ctp-surface0);
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+#header form.search input[type="text"] {
+  border-radius: 1em;
+}
+
+#greeting {
+  padding: 0.5em 0;
+}
+
+#greeting .user > li {
+  margin: 0 0.125em;
+}
+
+#greeting .menu {
+  right: 0;
+}
+
+#header input,
+#header #search > *,
+#header #search .submit {
+  display: inline;
+  float: none;
+}
+
+#header a,
+#header fieldset,
+#header form,
+#header p,
+#header li,
+#header h1,
+#small_login dl {
+  background: transparent;
+  font-size: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+#header #greeting img,
+#header fieldset,
+#header form,
+#header p,
+#tos_prompt .heading {
+  color: var(--ctp-subtext0);
+}
+
+/* Collections header */
+#header h2 {
+  border-top: 0;
+  clear: both;
+  color: var(--ctp-text);
+  display: block;
+  font-size: 1.714em;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0 0.375em;
+}
+
+/** Footer **/
+
+#footer,
+#outer #footer {
+  background: var(--ctp-base);
+  border: 0;
+  border-top: 1px solid var(--ctp-surface0);
+}
+
+#footer .group,
+#outer .region {
+  background: none;
+}
+
+#footer a {
+  color: var(--ctp-subtext1);
+}
+
+#footer a:hover,
+#footer a:focus {
+  background: transparent;
+  color: var(--ctp-accent);
+}
+
+#footer .heading {
+  color: var(--ctp-subtext0);
+}

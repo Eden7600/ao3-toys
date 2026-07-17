@@ -1,8 +1,13 @@
-// Default theme variables, do not remove from project
+// Default theme variables, do not remove from project.
+// Reference copy of the full variable contract (blue profile values) —
+// not imported by the build; the injected variables come from
+// theme-profiles/*.scss and theme-profiles/catppuccin.ts.
 
 :root {
   --input-border-color: #6ab5ff;
+  --ao3-header-color: #30679e;
   --ao3-accent-color: #5998d6;
+  --ao3-accent-color-hover: #5897d4;
   --ao3-accent-color-light: #9ecfff;
   --background-color: #1c1b22;
   --background-color-dark: #151319;
@@ -14,8 +19,16 @@
   --button-current-color: #0b0b0b;
   --button-highlight-color: #4e4e5e;
   --tag-bubble-color-visited-hover: #5b5b66;
+  --text-focus-color: #ddd;
   --text-color: #eee;
   --text-link-color: #fff;
   --text-link-visited-color: #bfbfbf;
   --textbox-background-color: #23222b;
+  --tag-character-border: #337e00;
+  --tag-character-fill: #337e0033;
+  --tag-relationship-border: #0e60b0;
+  --tag-relationship-fill: #0e60b033;
+  --editor-focus-background: #f3efec;
+  --on-accent-color: #ffffff;
+  --card-background-color: #151319;
 }

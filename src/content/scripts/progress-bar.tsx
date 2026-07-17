@@ -11,12 +11,14 @@ const STYLE_CONSTANTS = {
   bar: {
     transform: "transform 0.5s ease-in-out",
   },
+  // Follows the theme injector's accent when its variables are present;
+  // the fallbacks keep the original tailwind look otherwise
   colors: {
     base: Color.tailwind.slate[200],
     marker: Color.tailwind.slate[500],
     progress: {
-      start: Color.tailwind.red[500],
-      end: Color.tailwind.red[600],
+      start: `var(--ao3-accent-color, ${Color.tailwind.red[500]})`,
+      end: `var(--ao3-accent-color-hover, ${Color.tailwind.red[600]})`,
     },
   },
   opacity: {

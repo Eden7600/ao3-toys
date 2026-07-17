@@ -37,8 +37,9 @@ const resumeToastStyles = `
     max-width: min(90vw, 34em);
     padding: 0.6em 1em;
     border-radius: 0.5em;
-    background: #2a2a2a;
-    color: #fff;
+    background: var(--button-background-color, #2a2a2a);
+    color: var(--text-color, #fff);
+    border: 1px solid var(--box-border-color-subtle, transparent);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     font-size: 0.95em;
   }

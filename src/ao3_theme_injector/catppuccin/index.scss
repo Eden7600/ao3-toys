@@ -1,0 +1,23 @@
+// Isolated Catppuccin core theme. Selected by prepareCss when the palette
+// family is "catppuccin"; the classic theme (../theme) is untouched.
+//
+// Consumes the full --ctp-* palette emitted by buildCatppuccinCss.
+// Three-layer model: backdrop = crust, cards = mantle, UI = base.
+//   crust    → page backdrop (body, #inner, #main) and deepest insets
+//   mantle   → content cards (blurbs, comments, meta, listbox wells)
+//              and recessed inputs
+//   base     → interface panes (#header/#footer, dashboard, listboxes)
+//   surface0 → controls and floating panels; surface1 → hover
+//   accent   → current/selected states (with --ctp-on-accent text),
+//              headings and emphasis; links stay blue per the style guide.
+// Latte inverts naturally: the same roles run darker on light ground.
+
+@use "../theme/01-fonts" as fonts;
+@use "01-base" as base;
+@use "02-chrome" as chrome;
+@use "03-actions" as actions;
+@use "04-blurbs" as blurbs;
+@use "05-tags" as tags;
+@use "06-work" as work;
+@use "07-sidebar" as sidebar;
+@use "08-messages" as messages;

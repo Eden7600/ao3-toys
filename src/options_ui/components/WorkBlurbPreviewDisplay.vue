@@ -402,12 +402,16 @@ const srcdoc = computed(() => {
     blurbHtml(work, props.settings),
   ).join("");
   // The theme injector always runs on AO3; prepareCss mirrors its output
-  // for the current theme settings (variables only when the theme is off).
-  const themeCss = prepareCss(
-    props.settings.ao3ThemeEnabled,
-    props.settings.ao3ThemeOled,
-    props.settings.ao3ThemeAccent,
-  );
+  // for the current theme settings (nothing when the theme is off — the
+  // page keeps AO3's default skin and card fallbacks apply).
+  const themeCss = prepareCss({
+    enableTheme: props.settings.ao3ThemeEnabled,
+    enableOled: props.settings.ao3ThemeOled,
+    family: props.settings.ao3ThemeFamily,
+    accent: props.settings.ao3ThemeAccent,
+    flavor: props.settings.ao3ThemeFlavor,
+    catppuccinAccent: props.settings.ao3ThemeCatppuccinAccent,
+  });
 
   // Mirrors the stat-layout content script
   const statLayoutCss = props.settings.stackBlurbStats ? STACKED_STATS_CSS : "";

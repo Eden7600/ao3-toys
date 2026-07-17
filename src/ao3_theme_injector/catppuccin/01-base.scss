@@ -1,0 +1,233 @@
+// Global ground: base main pane, text hierarchy, links, inputs, tables.
+// color-scheme is emitted per-flavor by the generator, not hardcoded here.
+
+* {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+body {
+  background: var(--ctp-crust);
+  border-color: var(--ctp-surface1);
+  color: var(--ctp-text);
+}
+
+/* The page backdrop is crust — the deepest layer everything floats on */
+#outer,
+#inner,
+#main,
+.javascript,
+#tos_prompt {
+  background: var(--ctp-crust);
+}
+
+/* Links are blue per the style guide; visited pulls lavender toward text */
+a,
+a:link {
+  color: var(--ctp-blue);
+  text-decoration: none;
+}
+
+a:visited,
+div.preface .byline a:visited,
+span.series .divider {
+  color: var(--text-link-visited-color);
+}
+
+a:hover,
+a:link:hover,
+a:visited:hover {
+  color: var(--ao3-accent-color-light);
+}
+
+/* Headings carry the body text color; emphasis surfaces get the accent */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+  border: 0;
+  color: var(--ctp-text);
+}
+
+.heading,
+.group .heading,
+#outer .group .heading,
+fieldset.listbox .heading,
+.userstuff .heading,
+.userstuff h2 {
+  background: none;
+  color: var(--ctp-text);
+}
+
+/* Blurb titles, work links, and required markers show the chosen accent */
+a.cloud7,
+a.cloud8,
+a.work,
+.blurb h4 a:link,
+.blurb h4 img,
+.delete a,
+.splash .browse li a:before,
+span.claimed,
+span.delete,
+span.requested,
+span.unread,
+.draggable,
+.droppable,
+.replied,
+.required {
+  color: var(--ctp-accent);
+}
+
+.blurb h4 a:hover,
+.blurb h4 a:link:hover,
+.blurb h4 a:visited:hover,
+.delete a:hover {
+  color: var(--ao3-accent-color-light);
+}
+
+.blurb h4 a:visited,
+.listbox .heading a:visited {
+  color: var(--text-link-visited-color);
+}
+
+a img,
+.icon {
+  border: 0;
+  border-radius: 0.25em;
+}
+
+hr,
+.userstuff hr {
+  border: 0;
+  border-bottom: 2px solid;
+  color: var(--ctp-surface2);
+  margin: 1.5em auto;
+}
+
+/* Inputs sit recessed (mantle) with a surface hairline; focus = accent */
+input,
+textarea,
+select {
+  background: var(--ctp-mantle);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 0.25em;
+  color: var(--ctp-text);
+}
+
+input:hover,
+textarea:hover,
+form.search input:hover[type="text"] {
+  border-color: var(--ctp-overlay0);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+form.search input:focus[type="text"] {
+  background: var(--ctp-mantle);
+  border-color: var(--ctp-accent);
+}
+
+form blockquote.userstuff {
+  background: var(--ctp-mantle);
+  border-color: var(--ctp-surface1);
+}
+
+.mce-container input:focus {
+  background: var(--ctp-surface0);
+}
+
+/* Generic containers stay on the crust backdrop; the surfaces that
+   matter (cards, UI panes) claim their layer explicitly */
+.group,
+.group .group,
+.region,
+fieldset,
+fieldset fieldset ul,
+form dl,
+.verbose fieldset,
+table,
+.ui-sortable li,
+.required .autocomplete,
+.autocomplete .notice,
+div.dynamic,
+.dynamic form,
+#ui-datepicker-div,
+.ui-datepicker table {
+  background: var(--ctp-crust);
+  border-color: var(--ctp-surface1);
+  color: var(--ctp-text);
+}
+
+th,
+thead td,
+tfoot td,
+.thread .even,
+.system .tweet_list li,
+.ui-datepicker tr:hover {
+  background: var(--ctp-mantle);
+  border-color: var(--ctp-surface1);
+}
+
+td:hover,
+tr:hover {
+  background: var(--ctp-surface0);
+}
+
+/* Default table chrome uses white/gray hairlines */
+thead,
+tfoot {
+  border-color: var(--ctp-surface2);
+}
+
+tbody tr {
+  border-color: var(--ctp-surface0);
+}
+
+#main .verbose legend {
+  background: transparent;
+}
+
+.secondary {
+  border: 0;
+  background: var(--ctp-surface0);
+}
+
+ul.expandable.secondary {
+  border: 0;
+  background: var(--ctp-surface0);
+  color: var(--ctp-text);
+}
+
+.toggled form {
+  background: var(--ctp-crust);
+  border: 0;
+}
+
+li.blurb,
+fieldset,
+form dl {
+  border: 0;
+  padding: 0.5em;
+  overflow: hidden;
+}
+
+.picture .header {
+  border: 0;
+}
+
+/* State pills (unread/claimed/defaulted) tint toward the accent instead
+   of the default gray-with-red-text */
+span.unread,
+span.claimed,
+.actions span.defaulted {
+  background: color-mix(in srgb, var(--ctp-accent) 12%, var(--ctp-mantle));
+  border-color: transparent;
+}
+
+.dropdown-toggle {
+  border-radius: 0 !important;
+}

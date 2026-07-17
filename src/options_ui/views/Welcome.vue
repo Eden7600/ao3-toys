@@ -87,7 +87,9 @@ const features: FeatureCard[] = [
   <div class="p-5 md:p-8 bg-surface-900 rounded-lg">
     <div class="flex items-center gap-3">
       <h1 class="text-4xl font-bold text-white">AO3 Toys</h1>
-      <span v-if="version" class="text-sm text-gray-500 mt-2">v{{ version }}</span>
+      <span v-if="version" class="text-sm text-gray-500 mt-2"
+        >v{{ version }}</span
+      >
     </div>
     <p class="text-gray-400 text-lg mt-2">
       A toolbox of tweaks for reading on the Archive of Our Own — tag
@@ -105,30 +107,46 @@ const features: FeatureCard[] = [
     <h2 class="text-2xl font-semibold text-white mb-4">Quick start</h2>
     <ol class="space-y-3 text-gray-300">
       <li class="flex gap-3">
-        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center">1</span>
+        <span
+          class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center"
+          >1</span
+        >
         <span>
           Pick your look in
-          <RouterLink to="/theme" class="text-blue-400 hover:underline">Theme</RouterLink>
+          <RouterLink to="/theme" class="text-blue-400 hover:underline"
+            >Theme</RouterLink
+          >
           — the preview shows changes instantly.
         </span>
       </li>
       <li class="flex gap-3">
-        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center">2</span>
+        <span
+          class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center"
+          >2</span
+        >
         <span>
           Browse AO3 and right-click any tag (or hover it and click the dot) to
           highlight it or hide its works.
         </span>
       </li>
       <li class="flex gap-3">
-        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center">3</span>
+        <span
+          class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center"
+          >3</span
+        >
         <span>
           Tune what disappears in
-          <RouterLink to="/hide-works" class="text-blue-400 hover:underline">Hide Works</RouterLink>
+          <RouterLink to="/hide-works" class="text-blue-400 hover:underline"
+            >Hide Works</RouterLink
+          >
           — collapse to a banner or remove entirely, per filter.
         </span>
       </li>
       <li class="flex gap-3">
-        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center">4</span>
+        <span
+          class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-600 text-white text-sm font-bold flex items-center justify-center"
+          >4</span
+        >
         <span>
           Open a work and click the round button in the corner to shape the
           reading view to your taste.
@@ -168,10 +186,14 @@ const features: FeatureCard[] = [
     <div class="flex items-start gap-3">
       <i class="pi pi-download text-blue-400 text-xl mt-1"></i>
       <div>
-        <h3 class="text-lg font-semibold text-white mb-1">Your data, portable</h3>
+        <h3 class="text-lg font-semibold text-white mb-1">
+          Your data, portable
+        </h3>
         <p class="text-gray-400">
           Since everything lives in your browser, use
-          <RouterLink to="/export" class="text-blue-400 hover:underline">Import / Export</RouterLink>
+          <RouterLink to="/export" class="text-blue-400 hover:underline"
+            >Import / Export</RouterLink
+          >
           to back up your tags and settings, or to move them to another browser.
         </p>
       </div>
