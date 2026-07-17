@@ -23,7 +23,7 @@ export async function buildScript(args: Args, entry: string, outPath: string) {
     configFile: false,
     build: {
       sourcemap: isDev ? "inline" : false,
-      minify: !isDev,
+      minify: false,
       watch: args.command === "watch" ? {} : undefined,
       outDir,
       emptyOutDir: false,

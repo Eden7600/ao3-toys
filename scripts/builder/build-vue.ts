@@ -21,7 +21,7 @@ export async function buildVue(args: Args, entry: string, outPath: string) {
     plugins: [vue()],
     build: {
       sourcemap: isDev ? "inline" : false,
-      minify: !isDev,
+      minify: false,
       outDir: resolve(process.cwd(), `dist/${args.browser}/${outPath}`),
       emptyOutDir: false,
       rollupOptions: {
