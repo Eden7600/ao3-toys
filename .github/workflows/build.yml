@@ -40,7 +40,7 @@ jobs:
           SERVER_FEATURES: disabled
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ao3-toys-${{ matrix.browser }}-${{ matrix.mode }}
           path: dist/${{ matrix.browser }}
