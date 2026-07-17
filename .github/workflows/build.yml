@@ -57,12 +57,12 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: ao3-toys-chrome-prod
           path: dist/chrome
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: ao3-toys-firefox-prod
           path: dist/firefox
