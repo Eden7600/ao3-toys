@@ -1,0 +1,275 @@
+#header {
+  background: var(--background-color-dark) !important;
+  color: var(--text-link-color);
+  font-size: 0.875em;
+  margin: unset;
+  padding: 0;
+  position: relative;
+}
+
+#header .heading {
+  float: left;
+  padding: 0.375em;
+}
+
+#header li {
+  display: block;
+  float: left;
+  position: relative;
+}
+
+#header a,
+#header a:visited,
+#header .heading a:visited,
+#header .primary .open a,
+#header .primary .open a:focus,
+#header .primary .dropdown:hover a,
+#header .user a:focus,
+.filters dt a:hover {
+  color: var(--text-link-color);
+}
+
+#header .actions a:hover,
+#header .actions a:focus,
+#header .dropdown:hover a,
+#header .open a {
+  background: var(--text-focus-color);
+}
+
+#header .actions a {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-link-color);
+}
+
+#header .actions a:active,
+#header .actions a:focus {
+  background: transparent;
+  color: var(--text-link-color);
+}
+
+/* header dropdown menu bgs */
+#header .actions a:hover,
+#header .dropdown:hover a,
+#header
+
+/*.primary*/
+.dropdown a:focus,
+#header .user .open a:focus {
+  background: var(--background-color);
+  color: var(--text-link-color);
+}
+
+/* dropdowns are hover colour */
+#header .dropdown .menu a,
+#greeting .dropdown .menu a {
+  background: var(--background-color);
+  border-color: var(--background-color);
+  color: var(--text-color);
+  display: block;
+  padding: 0.75em 0.5em 0.75em 0.5em;
+}
+
+/* dropdown menu links with dark hover */
+#header .dropdown .menu a:focus,
+#header .dropdown .menu a:hover {
+  background: var(--background-color-dark);
+  color: var(--text-link-color);
+}
+
+#header .dropdown .menu a:hover,
+#greeting .dropdown .menu a:hover {
+  border-radius: 0;
+}
+
+/* nix lines in header nav */
+#header .dropdown .menu li {
+  border: 0;
+  margin: auto;
+}
+
+// Remove stupid background that exists for no reason
+// All border radius should be 0.5em except for the top right which should be 0
+#header .dropdown-menu {
+  background: transparent;
+  border: 1px solid var(--box-border-color-subtle);
+}
+
+#header .heading a {
+  color: var(--text-link-color);
+  font-size: 1.714em;
+  line-height: 1.75;
+}
+
+#header .heading sup {
+  font-size: 0.583em;
+  font-style: italic;
+}
+
+#header .logo {
+  float: left;
+  height: 42px;
+}
+
+/* "archiveofourown beta" lighter text pop on active */
+#header .heading a:active {
+  color: var(--ao3-accent-color-light);
+}
+
+#header .landmark {
+  clear: none;
+  font-size: 0;
+  border: 0;
+}
+
+#header .primary {
+  background: var(--ao3-header-color);
+  padding: 0 0;
+  width: 100%;
+}
+
+#header .menu,
+#greeting .menu {
+  padding: 0;
+}
+
+/* "archiveofourown beta" text pop on hover */
+#header #greeting img,
+#header fieldset,
+#header form,
+#header p,
+#header .heading a:focus,
+#header .heading a:hover,
+#header .heading a:hover:visited,
+#tos_prompt .heading {
+  color: var(--ao3-accent-color);
+}
+
+/* stay square, nav buttons */
+#header ul.primary {
+  border-radius: 0 !important;
+}
+
+#header .menu li {
+  border-bottom: 0;
+  margin: 0 0.25em;
+  text-align: left;
+}
+
+#header .menu li:last-child {
+  border-bottom: 0;
+}
+
+#header .open a,
+#small_login {
+  background: var(--textbox-background-color);
+}
+
+#header .user a {
+  background: transparent;
+  border: transparent;
+}
+
+/* user/post/login drowndown border rounding is consistent */
+#header .user .dropdown-toggle {
+  border-radius: 0.25em 0.25em 0 0 !important;
+}
+
+#outer .group .heading,
+fieldset.listbox .heading,
+.userstuff .heading,
+.userstuff h2 {
+  background: none;
+  color: var(--text-link-color);
+}
+
+/** SEARCH SECTION **/
+
+#header .search {
+  float: right;
+  color: var(--text-color);
+  margin-right: 0.25em;
+}
+
+#header #search .text,
+#header #search .button {
+  border: 0;
+}
+
+/* small margin fix in searchbar */
+#header #search .text {
+  margin: 0.3em 0.43em;
+}
+
+#header #search .button {
+  border-radius: 1em;
+  margin: 0;
+}
+
+/* header searchbar colours */
+#header #search .text,
+#header #search .text:active {
+  background: var(--textbox-background-color);
+}
+
+/* header searchbar colours */
+#header #search input:focus,
+#header #search .text:focus,
+#header #search .text:hover {
+  background: var(--button-background-color);
+  border-color: transparent;
+  color: var(--text-link-color);
+}
+
+/* header searchbar remain round */
+#header form.search input[type="text"] {
+  border-radius: 1em;
+}
+
+/* gives user greeting some breathing room */
+#greeting {
+  padding: 0.5em 0;
+}
+
+#greeting .user > li {
+  margin: 0 0.125em;
+}
+
+#greeting .menu {
+  right: 0;
+}
+
+#header input,
+#header #search > *,
+#header #search .submit {
+  display: inline;
+  float: none;
+}
+
+/* check login and greeting; was a quick fix to remove bg */
+#header a,
+#header fieldset,
+#header form,
+#header p,
+#header li,
+#header h1,
+#small_login dl {
+  background: transparent;
+  font-size: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* collections header */
+#header h2 {
+  border-top: 0;
+  clear: both;
+  color: var(--text-link-color);
+  display: block;
+  font-size: 1.714em;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0 0.375em;
+}

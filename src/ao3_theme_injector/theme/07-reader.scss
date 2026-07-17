@@ -1,0 +1,130 @@
+// /* unfortunately blockquotes get weird with more white space so gotta fix that */
+// #chapters .userstuff blockquote {
+//   margin-left: 5em;
+//   margin-right: 5em;
+// }
+
+// /* wrangle p margins within blockquotes */
+// #chapters .userstuff blockquote p {
+//   margin-left: 1em;
+//   margin-right: 1em;
+// }
+
+// /* scrunches code in-work a little */
+// #chapters .userstuff code {
+//   font-size: 0.8em;
+// }
+
+// /* line height is not a bad thing give it back */
+// #chapters .userstuff ol {
+//   line-height: inherit;
+// }
+
+// /* embiggen fic margins! in this house we appreciate white space */
+// #chapters .userstuff p {
+//   margin-left: 2.5em;
+//   margin-right: 2.5em;
+// }
+
+/* slightly bigger pre because otherwise it looks like it's for ants */
+#chapters .userstuff pre {
+  font-size: 1em;
+}
+
+/* in work, boxes summary + author notes */
+.notes.module blockquote.userstuff,
+.summary.module blockquote.userstuff {
+  background: var(--background-color-dark);
+  border-radius: 0.5em;
+  padding: 1em;
+}
+
+.userstuff h3 {
+  border-bottom: 1px solid var(--box-border-color);
+}
+
+div.preface {
+  margin: 1.5em 1em 2em 1em;
+  padding: 0.65em 0.65em 0 0.65em;
+  float: none;
+}
+
+div.preface .module {
+  float: none;
+  margin: 0;
+  padding: 0 0 0.65em;
+  width: auto;
+}
+
+/* nix border at the top of work page */
+.chapter .preface {
+  border-top: 0px solid;
+}
+
+.preface h3 {
+  background: transparent;
+  border-bottom: 0;
+}
+
+.preface h2.title {
+  display: block;
+  border-bottom: 0;
+  clear: right;
+}
+
+div.preface .title,
+div.preface .byline {
+  border: 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+.byline a {
+  color: var(--ao3-accent-color);
+}
+
+.byline a:hover {
+  color: var(--ao3-accent-color-hover);
+}
+
+.preface a:hover {
+  text-decoration: none;
+}
+
+.preface blockquote {
+  border: 0;
+}
+
+div.preface .notes,
+div.preface .summary,
+div.preface .series,
+div.preface .children {
+  min-height: 5em;
+}
+
+div.preface .series ul,
+div.preface .children ul {
+  padding: 0 0.65em;
+}
+
+div.preface .associations {
+  margin-bottom: 1.5em;
+}
+
+div.preface .jump {
+  margin-top: 1.5em;
+}
+
+/* dump summary further below title */
+div.summary.module {
+  margin-top: 2em;
+}
+
+div.afterword {
+  margin-bottom: 2.5em;
+}
+
+div.afterword .series h3,
+div.afterword .children h3 {
+  border-bottom: none;
+}

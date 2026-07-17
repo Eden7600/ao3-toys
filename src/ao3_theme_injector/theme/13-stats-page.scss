@@ -1,0 +1,35 @@
+.statistics .fandom.listbox.group {
+  background: transparent;
+  border: var(--background-color-dark);
+  border-radius: 0.25em;
+  margin: 1em 0;
+}
+
+.statistics .fandom ul.index.group {
+  background: var(--background-color-dark) !important;
+  border-radius: inherit;
+  padding: 0.15em 0.65em;
+}
+
+/* cushion for h5 on stats page */
+.statistics .listbox h5.heading {
+  font-size: 1.1em;
+  margin: 0.75em 0 !important;
+}
+
+/* adjusts stats spacing */
+.statistics .index dd {
+  margin: 1em 0 0.5em 0 !important;
+}
+
+/* adjusts stats spacing */
+.statistics .index li {
+  border-radius: inherit;
+  margin: 0.5em 0;
+  padding: 0.5em;
+}
+
+/* even entries get a cool different colour */
+.statistics .index li:nth-of-type(even) {
+  background: var(--button-background-color);
+}

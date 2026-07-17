@@ -1,0 +1,42 @@
+#dashboard,
+#dashboard.own {
+  border-color: var(--ao3-accent-color);
+}
+
+#dashboard a,
+#dashboard span {
+  color: var(--text-link-color);
+}
+
+#dashboard a:active,
+#dashboard .current {
+  background: var(--button-current-color);
+  border-color: transparent;
+  color: var(--text-link-color);
+}
+
+#dashboard a:focus,
+#dashboard a:hover {
+  background: var(--button-highlight-color);
+  color: var(--text-link-color);
+}
+
+/* nix dash button lines */
+#dashboard ul {
+  border: 0;
+}
+
+/* dark dashboard backdrop, smaller font size, more padding */
+#dashboard.own {
+  background: var(--background-color-dark);
+  border-top: 0.75em solid var(--ao3-header-color);
+  border-bottom: 0.75em solid var(--ao3-header-color);
+  font-size: 0.85em;
+  margin-top: 1.75em;
+  padding: 0.25em;
+}
+
+/* fix subscriptions page */
+dl.subscription.group dd {
+  background-color: var(--background-color);
+}

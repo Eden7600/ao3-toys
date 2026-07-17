@@ -1,0 +1,380 @@
+/*
+ * AO3 default-skin core rules for work blurbs, adapted from AO3's public
+ * stylesheet for the options-page preview iframe. The theme injector's
+ * compiled CSS is layered after this, exactly as on the live site.
+ * Required-tags symbols are CSS approximations (AO3 uses a sprite sheet
+ * we can't ship).
+ */
+
+body {
+  background: #fff;
+  color: #2a2a2a;
+  font:
+    100%/1.125 "Lucida Grande",
+    "Lucida Sans Unicode",
+    Verdana,
+    Helvetica,
+    sans-serif,
+    "GNU Unifont";
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  padding: 1em 2em;
+}
+
+a,
+a:link,
+a:visited {
+  color: #900;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #999;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+h4 {
+  font-size: 1.143em;
+  line-height: 1.125;
+  margin: 0.5em 0;
+}
+
+h5 {
+  font-size: 1em;
+  line-height: 1.286;
+  margin: 0.643em 0;
+}
+
+h6 {
+  font-size: 0.875em;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 1.5em 0;
+}
+
+p,
+li,
+dd {
+  margin: 0.643em 0;
+}
+
+blockquote {
+  font:
+    1em "Lucida Grande",
+    "Lucida Sans Unicode",
+    Verdana,
+    Helvetica,
+    sans-serif;
+  margin: 0.643em;
+}
+
+blockquote p:first-child {
+  margin-top: 0;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+.landmark {
+  font-size: 0;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  clear: both;
+}
+
+/* Listing */
+
+ol.index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.blurb {
+  display: block;
+  position: relative;
+  clear: left;
+  padding: 0.429em 0.75em;
+  overflow: visible;
+  border: 1px solid #ddd;
+  margin-bottom: 0.643em;
+}
+
+.blurb ul li,
+.blurb dd ul li {
+  display: inline;
+}
+
+.blurb .module {
+  float: none;
+}
+
+.blurb .header {
+  min-height: 55px;
+  margin-bottom: 0.375em;
+  position: relative;
+}
+
+.blurb .header .heading,
+.blurb .header ul.required-tags ~ * {
+  display: block;
+}
+
+.blurb .header .heading {
+  background: transparent;
+  margin: 0.375em 5.25em 0 65px;
+}
+
+.blurb h4 a:link,
+.blurb h4 a:visited {
+  color: #900;
+}
+
+.blurb .heading {
+  display: block;
+}
+
+.blurb h5 .landmark {
+  position: absolute;
+}
+
+/* Required tags symbol grid */
+
+.blurb ul.required-tags {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blurb ul.required-tags li,
+.blurb ul.required-tags li a,
+.blurb ul.required-tags li span {
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.blurb ul.required-tags li {
+  margin-bottom: 3px;
+}
+
+.blurb ul.required-tags li + li + li,
+.blurb ul.required-tags li + li + li + li {
+  position: absolute;
+  left: 28px;
+}
+
+.blurb ul.required-tags li + li + li {
+  top: 0;
+}
+
+.blurb ul.required-tags li + li + li + li {
+  top: 28px;
+}
+
+.blurb span.text {
+  height: 0;
+  width: 0;
+  font-size: 0.001em;
+  color: transparent;
+  display: block;
+  overflow: hidden;
+}
+
+/*
+ * Required-tags symbols: AO3's real imageset sprite with the exact
+ * offsets from skin_1_default/1_site_screen_.css (otwarchive,
+ * GPL-2.0-or-later). __AO3_IMAGESET__ is substituted at runtime with
+ * the bundled asset URL.
+ */
+
+.blurb ul.required-tags li span {
+  background-repeat: no-repeat;
+}
+
+.required-tags .rating-general-audience {
+  background: url("__AO3_IMAGESET__") -50px -25px;
+}
+
+.required-tags .rating-explicit {
+  background: url("__AO3_IMAGESET__") -25px -25px;
+}
+
+.required-tags .rating-mature {
+  background: url("__AO3_IMAGESET__") -75px -25px;
+}
+
+.required-tags .rating-notrated,
+.required-tags .category-none,
+.required-tags .warning-no {
+  background: url("__AO3_IMAGESET__") -150px 0px;
+}
+
+.required-tags .rating-teen {
+  background: url("__AO3_IMAGESET__") 0px -25px;
+}
+
+.required-tags .category-femslash {
+  background: url("__AO3_IMAGESET__") -25px 0px;
+}
+
+.required-tags .category-gen {
+  background: url("__AO3_IMAGESET__") -50px 0px;
+}
+
+.required-tags .category-slash {
+  background: url("__AO3_IMAGESET__") 0px 0px;
+}
+
+.required-tags .category-het {
+  background: url("__AO3_IMAGESET__") -75px 0px;
+}
+
+.required-tags .category-multi {
+  background: url("__AO3_IMAGESET__") -100px 0px;
+}
+
+.required-tags .category-other {
+  background: url("__AO3_IMAGESET__") -125px 0px;
+}
+
+.required-tags .complete-no {
+  background: url("__AO3_IMAGESET__") -100px -25px;
+}
+
+.required-tags .complete-yes {
+  background: url("__AO3_IMAGESET__") -175px -25px;
+}
+
+.required-tags .warning-yes {
+  background: url("__AO3_IMAGESET__") -150px -25px;
+}
+
+.required-tags .warning-choosenotto {
+  background: url("__AO3_IMAGESET__") -125px -25px;
+}
+
+/* Datetime */
+
+.blurb .datetime {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* Tags */
+
+a.tag {
+  color: #111;
+  line-height: 1.5;
+  text-decoration: none;
+  padding: 0;
+  border-bottom: 1px dotted;
+}
+
+a.tag:hover {
+  background: #900;
+  color: #fff;
+}
+
+ul.tags {
+  margin: 0.643em 0;
+  padding: 0;
+}
+
+.tags li {
+  display: inline;
+  padding-left: 0;
+  padding-right: 0.25em;
+}
+
+.warnings,
+.warning {
+  font-weight: bold;
+}
+
+li.relationships a {
+  background: #eee;
+}
+
+/* Summary */
+
+.blurb blockquote {
+  margin: 0.643em auto;
+  text-align: justify;
+}
+
+/* Series */
+
+.blurb ul.series {
+  margin: 1.25em 0 0.875em;
+  padding: 0;
+  list-style: none;
+}
+
+/* Stats */
+
+dl.stats {
+  text-align: right;
+  background: none;
+  margin-top: 0.643em;
+  box-shadow: none;
+}
+
+.blurb dl.stats {
+  float: right;
+  line-height: 1.5;
+}
+
+dl.stats dt,
+dl.stats dd {
+  background: none;
+  width: auto;
+  min-width: 0;
+  display: inline;
+  clear: none;
+  float: none;
+  margin: auto;
+}
+
+dl.stats dd {
+  white-space: nowrap;
+  padding-right: 0.5em;
+}
+
+.blurb::after {
+  content: " ";
+  display: block;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  visibility: hidden;
+}

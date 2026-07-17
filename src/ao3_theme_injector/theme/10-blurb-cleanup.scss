@@ -1,0 +1,104 @@
+#main li.blurb {
+  background: var(--background-color-dark);
+  border-color: transparent;
+  border-radius: 0.25em;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+}
+
+.bookmark .user {
+  border: 0;
+  margin-top: 0.65em;
+  padding: 0.429em 0.75em;
+  overflow: hidden;
+}
+
+.blurb .datetime,
+.datetime {
+  font-size: small;
+  line-height: 1.25;
+}
+
+/* pretty sure these are the blurb key symbol blocks */
+ul.required-tags,
+.blurb .icon,
+.bookmark .status span {
+  border: 0;
+  opacity: 0.9;
+}
+
+/* cushion work blurb stats, align with bottom of listbox */
+.blurb dl.stats {
+  margin-top: 1em;
+  margin-bottom: 0.55em;
+  line-height: 1.25;
+}
+
+/* gives work blurb some cushion between bottom buttons */
+.blurb blockquote {
+  margin: 0.5em auto 1em auto;
+}
+
+/* adjust padding near edit/tags blurb buttons */
+.blurb .actions li {
+  padding: 0 0.25em 0 0;
+}
+
+/* adjusts blurb header with rest of blurb bg */
+.blurb .header .heading {
+  margin: 0.375em 5.25em 0 65px;
+}
+
+/* gets rid of commas after tags because bubbles */
+.commas li::after {
+  content: none;
+}
+
+/* knock tag bubbles on work page back into alignment */
+.meta dd ul li {
+  padding-right: 0.5em;
+  padding-left: 0;
+}
+
+/* de-bubble bookmarker tags */
+.bookmark.blurb .meta.tags.commas a.tag {
+  background: revert;
+  border: 0;
+  border-bottom: 1px dotted var(--text-link-color);
+  border-radius: revert;
+  color: var(--text-link-color);
+  display: inline;
+  padding: revert;
+}
+
+/* de-bubble bookmarker hover tags */
+.bookmark.blurb .meta.tags.commas a.tag:hover {
+  color: var(--ao3-accent-color-light);
+}
+
+/* de-bubble bookmark hover tags — with the bubble gone the generic
+   a.tag:hover text color (near-black) would sit on the dark page, so
+   pin a readable hover color alongside */
+.meta.tags.commas .tag:hover,
+.meta.tags.commas .tag:visited:hover {
+  background: transparent;
+  color: var(--ao3-accent-color-light);
+}
+
+/* stops blockquotes in work blurbs from inheriting margins */
+.summary.userstuff blockquote {
+  margin: 0 1.5em !important;
+  padding: 0.25em 0.75em;
+}
+
+/* some white space between tag block and rest of the work blurb */
+.tags.commas {
+  margin: 0.5em 0;
+}
+
+/* cleans up user history work blurbs */
+.user.module.group {
+  background: transparent;
+  margin-top: 0.75em;
+  padding: 0.375em 0 0 0;
+}

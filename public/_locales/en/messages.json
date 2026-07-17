@@ -1,0 +1,10 @@
+{
+  "extensionDescription": {
+    "description": "Extension description",
+    "message": "A collection of tools to enhance the Archive of Our Own website."
+  },
+  "extensionName": {
+    "description": "Extension name",
+    "message": "AO3 Toys"
+  }
+}

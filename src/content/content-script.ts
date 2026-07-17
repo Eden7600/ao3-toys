@@ -1,0 +1,31 @@
+import type { Browser } from "@src/common/constants";
+import { Logger } from "@src/common/logger";
+import type { Settings } from "@src/common/settings";
+
+export type ContentScriptModule = {
+  default: new (settings: Settings, browser: Browser) => ContentScript;
+};
+
+export abstract class ContentScript {
+  protected browser: Browser;
+  protected settings: Settings;
+  protected logger: Logger;
+
+  constructor(settings: Settings, browser: Browser) {
+    this.browser = browser;
+    this.settings = settings;
+    this.logger = new Logger("CTS-" + this.constructor.name);
+  }
+
+  abstract getEnabled(): boolean;
+
+  // This stage is when we scrape/read data from the page. No modifications are made to the page at this stage.
+  onInitialize?(): Promise<void>;
+  // This is where we make small modifications to the page, such as adding / removing attributes.
+  onPreProcess?(): Promise<void>;
+  // This is where we make large modifications to the page. This is where we add / remove elements, modify content, etc.
+  onProcess?(): Promise<void>;
+  // This is after we've made all our modifications to the page, things like sending data, etc.
+  onPostProcess?(): Promise<void>;
+  onMutation?(mutations: MutationRecord[]): Promise<void>;
+}

@@ -1,0 +1,156 @@
+#bookmark-filters fieldset,
+#work-filters fieldset {
+  margin: 0 0.65em;
+  padding: 0 0.65em;
+}
+
+/* S&F margin adjustment */
+#bookmark-filters fieldset dl,
+#work-filters fieldset dl {
+  margin: 0.65em 0;
+}
+
+/* shortens S&F input boxes because otherwise the right end runs off the page */
+#collection_filters_title_autocomplete,
+#collection_filters_fandom_autocomplete,
+#bookmark_search_excluded_bookmark_tag_names_autocomplete,
+#bookmark_search_excluded_tag_names_autocomplete,
+#bookmark_search_other_bookmark_tag_names_autocomplete,
+#bookmark_search_other_tag_names_autocomplete,
+#bookmark_search_bookmark_query,
+#bookmark_search_bookmarkable_query,
+#work_search_excluded_tag_names_autocomplete,
+#work_search_other_tag_names_autocomplete,
+#work_search_query,
+#work_search_words_from,
+#work_search_words_to,
+#work_search_date_from,
+#work_search_date_to {
+  padding: 1px 0 1px 0;
+  width: 99%;
+}
+
+/* slightly smaller text for collapsed filter criteria */
+#include_rating_tags,
+#exclude_rating_tags,
+#include_archive_warning_tags,
+#exclude_archive_warning_tags,
+#include_category_tags,
+#exclude_category_tags,
+#include_fandom_tags,
+#exclude_fandom_tags,
+#include_character_tags,
+#exclude_character_tags,
+#include_relationship_tags,
+#exclude_relationship_tags,
+#include_freeform_tags,
+#exclude_freeform_tags,
+#include_tag_tags,
+#exclude_tag_tags {
+  font-size: 0.9em;
+}
+
+/* slight space between S&F labels and their input */
+.filters .group dt.bookmarker,
+.filters .group dt.language,
+.filters .group dt.search,
+.filters .group dt.options {
+  margin: 0.2em 0 0 0;
+  padding: 0.25em 0;
+}
+
+/* adjust margins on dds containing input */
+.filters .group dd.language,
+.filters .group dd.search,
+.filters .group dd.options,
+.filters .more dd.search,
+dd.options ul li {
+  margin: 0.2em 0;
+}
+
+/* slight space between S&F headings */
+dt.include.heading,
+dt.exclude.heading,
+dt.more.heading {
+  margin-bottom: 0.15em;
+}
+
+/* adjust S&F dl containers because the margins obscure input boxes */
+dd.include.tags.group dl,
+dd.exclude.tags.group dl,
+dd.more.group dl,
+dt.search dd {
+  margin: 0;
+}
+
+/* ao3 blue accent on autocomplete hover */
+.autocomplete .dropdown ul li:hover,
+.autocomplete .dropdown li.selected {
+  background: transparent;
+  color: var(--ao3-accent-color);
+}
+
+/* this is the part where the sort and filter arrow .gifs are taken out */
+.filters .expander,
+.filters .expanded .expander {
+  background: transparent;
+}
+
+/* and replaced! hi, meet right unicode arrow */
+.filters .expander::before {
+  content: "\23F5\00A0";
+}
+
+/* and left unicode arrow */
+.filters .expanded .expander::before {
+  content: "\23F7\00A0";
+}
+
+/* parent expander buttons are too far in, so they're scooching over a skosh */
+.filters button.expander {
+  padding: 0;
+}
+
+/* opposite with the kiddos */
+#work_crossover li,
+#work_complete li,
+.filters .tags li {
+  padding-left: 0.75em;
+}
+
+/* gets rid of extra lines in S&F sidebar */
+form dl dt,
+.filters dt {
+  border-bottom: 0;
+}
+
+/* fix search bars in work search because they're. A Lot */
+form.search input[type="text"] {
+  border-color: var(--box-border-color);
+  border-radius: 0.25em;
+}
+
+fieldset,
+form.verbose legend,
+.verbose form legend,
+.filters .group dt.bookmarker {
+  border: 0;
+}
+
+fieldset fieldset.listbox,
+.group.listbox {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 0.25em;
+}
+
+/* trying to make some boxes behave */
+.group.listbox .index {
+  background: var(--background-color-dark);
+  border-radius: 0.25em;
+}
+
+form dl dt,
+form.single fieldset {
+  border-color: var(--box-border-color);
+}

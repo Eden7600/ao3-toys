@@ -1,0 +1,233 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-shadow: none !important;
+  outline: none !important;
+  text-shadow: none !important;
+}
+
+body {
+  background: var(--background-color);
+  border-color: var(--box-border-color);
+  color: var(--text-color);
+}
+
+a,
+a:link {
+  color: var(--text-link-color);
+  text-decoration: none;
+}
+
+a:hover,
+a:link:hover,
+a:link:visited,
+a:visited:hover,
+div.preface .byline a:hover,
+div.preface .byline a:visited:hover,
+.blurb h4 a:hover,
+.blurb h4 a:link:hover,
+.blurb h4 a:visited:hover,
+.listbox .heading a:visited:hover {
+  color: var(--ao3-accent-color-light);
+}
+
+a:visited,
+div.preface .byline a:visited,
+span.series .divider,
+.blurb h4 a:visited,
+.listbox .heading a:visited {
+  color: var(--text-link-visited-color);
+}
+
+a img,
+.icon {
+  border: 0;
+  border-radius: 0.25em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+  border: 0;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1;
+  margin: 0.5em 0;
+}
+
+h2 {
+  font-size: 2.145em;
+  line-height: 1;
+  margin: 0.5em 0;
+  display: inline;
+}
+
+h3 {
+  font-size: 1.29em;
+  line-height: 1.25;
+  margin: 0.5375em 0;
+}
+
+h4 {
+  font-size: 1.145em;
+  line-height: 1.25;
+  margin: 0.5em 0;
+}
+
+h5 {
+  font-size: 1em;
+  line-height: 1.285;
+  margin: 0.65em 0;
+}
+
+h6 {
+  font-size: 0.875em;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 1.5em 0;
+}
+
+a.cloud7,
+a.cloud8,
+a.work,
+.blurb h4 a:link,
+.blurb h4 img,
+.delete a,
+.splash .browse li a:before {
+  color: var(--ao3-accent-color);
+}
+
+.delete a:hover {
+  color: var(--ao3-accent-color-light);
+}
+
+hr,
+.userstuff hr {
+  border: 0;
+  border-bottom: 2px solid;
+  color: var(--text-color);
+  margin: 1.5em auto;
+}
+
+/* rounds and pretties text boxes */
+input,
+textarea {
+  background: var(--textbox-background-color);
+  border-color: var(--box-border-color);
+  border-radius: 0.25em;
+  color: var(--text-color);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  background: var(--textbox-background-color);
+  border-color: var(--input-border-color);
+}
+
+input:focus,
+textarea:focus,
+form blockquote.userstuff,
+form.search input:focus[type="text"] {
+  background: var(--textbox-background-color);
+  border-color: var(--input-border-color);
+}
+
+input:hover,
+form.search input:hover[type="text"] {
+  background: var(--textbox-background-color);
+  border-color: var(--text-link-color);
+}
+
+th,
+.secondary,
+.thread .even,
+.system .tweet_list li,
+.ui-datepicker tr:hover {
+  background: var(--textbox-background-color);
+}
+
+.heading,
+.group .heading {
+  background: none;
+  color: var(--text-link-color);
+}
+
+span.claimed,
+span.delete,
+span.requested,
+span.unread,
+.draggable,
+.droppable,
+.replied,
+.required,
+.blurb h4 img {
+  color: var(--ao3-accent-color);
+}
+
+#main .verbose legend {
+  background: transparent;
+}
+
+.group,
+.group .group,
+.region,
+fieldset,
+fieldset fieldset ul,
+form dl,
+.verbose fieldset,
+ul.notes,
+table,
+th,
+td:hover,
+tr:hover,
+.symbol .question:hover,
+.ui-sortable li,
+.required .autocomplete,
+.autocomplete .notice,
+div.dynamic,
+.dynamic form,
+#ui-datepicker-div,
+.ui-datepicker table {
+  background: var(--background-color);
+  border-color: var(--box-border-color);
+  color: var(--text-color);
+}
+
+.picture .header {
+  border: 0;
+}
+
+.dropdown-toggle {
+  border-radius: 0 !important;
+}
+
+.secondary {
+  border: 0;
+}
+
+ul.expandable.secondary {
+  border: 0;
+  background: var(--ao3-accent-color);
+}
+
+.toggled form {
+  background: var(--background-color);
+  border: 0;
+}
+
+li.blurb,
+fieldset,
+form dl {
+  border: 0;
+  padding: 0.5em;
+  overflow: hidden;
+}

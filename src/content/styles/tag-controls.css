@@ -1,0 +1,208 @@
+/*
+ * Tag quick-controls (badge + popover) and the tag page's inline mount.
+ * Appended after rt-base.css inside the shadow root.
+ */
+
+/* Hover badge */
+
+.rt-tag-badge {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 1px solid var(--rt-border);
+  border-radius: 50%;
+  background: var(--rt-bg);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.rt-tag-badge::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rt-accent);
+}
+
+.rt-tag-badge:hover {
+  transform: translateY(-50%) scale(1.15);
+}
+
+.rt-tag-badge:focus-visible {
+  outline: 2px solid var(--rt-accent);
+  outline-offset: 1px;
+}
+
+/* Popover */
+
+.rt-tag-popover {
+  position: fixed;
+  width: 284px;
+  padding: 10px 12px;
+  background: var(--rt-bg);
+  border: 1px solid var(--rt-border);
+  border-radius: 10px;
+  box-shadow: var(--rt-shadow);
+}
+
+/* Inline (tag page) variant */
+
+.rt-tag-inline {
+  display: inline-block;
+  padding: 8px 12px;
+  background: var(--rt-bg);
+  border: 1px solid var(--rt-border);
+  border-radius: 8px;
+}
+
+/* Panel */
+
+.rt-tag-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rt-tag-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rt-tag-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.rt-tag-sub {
+  font-size: 11.5px;
+  color: var(--rt-text-muted);
+}
+
+/* 8 swatches must fit one row — see the single-row layout requirement. */
+.rt-swatches {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rt-swatch {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.rt-swatch:hover {
+  transform: scale(1.12);
+}
+
+.rt-swatch.selected {
+  border-color: var(--rt-text);
+}
+
+.rt-swatch:focus-visible {
+  outline: 2px solid var(--rt-accent);
+  outline-offset: 1px;
+}
+
+.rt-swatch-fade {
+  background: linear-gradient(
+    135deg,
+    var(--rt-surface) 50%,
+    var(--rt-border) 50%
+  );
+  opacity: 0.7;
+}
+
+.rt-tag-clear {
+  margin-left: auto;
+  padding: 3px 8px;
+  border: 1px solid var(--rt-border);
+  border-radius: 6px;
+  font-size: 11.5px;
+  color: var(--rt-text-muted);
+  cursor: pointer;
+}
+
+.rt-tag-clear:hover:not(:disabled) {
+  color: var(--rt-text);
+}
+
+.rt-tag-clear:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.rt-tag-clear:focus-visible {
+  outline: 2px solid var(--rt-accent);
+  outline-offset: 1px;
+}
+
+.rt-tag-toggles {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* AO3 filter actions + tag page link (popover footer) */
+
+.rt-tag-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rt-border);
+}
+
+.rt-tag-filter-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.rt-tag-filter-btn {
+  padding: 3px 8px;
+  border: 1px solid var(--rt-border);
+  border-radius: 6px;
+  font-size: 11.5px;
+  color: var(--rt-text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rt-tag-filter-btn.active {
+  border-color: var(--rt-accent);
+  color: var(--rt-accent);
+  font-weight: 600;
+}
+
+.rt-tag-filter-btn:focus-visible {
+  outline: 2px solid var(--rt-accent);
+  outline-offset: 1px;
+}
+
+.rt-tag-page-link {
+  margin-left: auto;
+  font-size: 11.5px;
+  color: var(--rt-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.rt-tag-page-link:hover {
+  color: var(--rt-accent);
+  text-decoration: underline;
+}

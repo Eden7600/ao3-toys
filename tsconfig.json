@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "rootDir": ".",
+    "module": "Preserve",
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@common/*": ["./src/common/*"]
+    },
+    "types": [
+      "vite/client",
+      "vite/types/metadata.d.ts",
+      "firefox-webext-browser"
+    ],
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noErrorTruncation": true,
+    "skipLibCheck": true
+  },
+  "vueCompilerOptions": {
+    "strictTemplates": true
+  },
+  "include": [
+    "scripts/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "eslint.config.js",
+    "tailwind.config.ts",
+    "vitest.config.ts"
+  ]
+}

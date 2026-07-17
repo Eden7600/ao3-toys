@@ -1,0 +1,161 @@
+/*
+ * Toybox work toolbar: the single bar below AO3's native action row that
+ * hosts all extension work-page controls. Appended after rt-base.css.
+ */
+
+/*
+ * Adopt the theme injector's palette when it's active. Custom properties
+ * inherit through the shadow boundary (all: initial does not reset them),
+ * so page-level :root variables are visible here; the fallbacks reproduce
+ * the rt-base palette for when theme injection is off.
+ */
+.rt-root {
+  --rt-bg: var(--box-background-color, #ffffff);
+  --rt-surface: var(--button-background-color, #f4f2f0);
+  --rt-surface-hover: var(--button-highlight-color, #e9e5e1);
+  --rt-text: var(--text-color, #211c19);
+  --rt-text-muted: color-mix(in srgb, var(--rt-text) 62%, var(--rt-bg));
+  --rt-border: var(--box-border-color-subtle, #d9d2cc);
+  --rt-accent: var(--ao3-accent-color, #990000);
+}
+
+.rt-root[data-theme="dark"] {
+  --rt-bg: var(--box-background-color, #201c1a);
+  --rt-surface: var(--button-background-color, #2d2825);
+  --rt-surface-hover: var(--button-highlight-color, #393330);
+  --rt-text: var(--text-color, #ece7e3);
+  --rt-text-muted: color-mix(in srgb, var(--rt-text) 62%, var(--rt-bg));
+  --rt-border: var(--box-border-color-subtle, #453e39);
+  --rt-accent: var(--ao3-accent-color, #b53d3d);
+}
+
+.rt-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 5px 10px;
+  background: var(--rt-surface);
+  border: 1px solid var(--rt-border);
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: var(--rt-text);
+}
+
+.rt-toolbar-brand {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rt-text-muted);
+  cursor: default;
+}
+
+.rt-toolbar-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  background: var(--rt-bg);
+  border: 1px solid var(--rt-border);
+  border-radius: 1em;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.rt-toolbar-chip.fresh {
+  border-color: #2f9e44;
+  background: color-mix(in srgb, #2f9e44 14%, var(--rt-bg));
+  color: color-mix(in srgb, #40c057 55%, var(--rt-text));
+  font-weight: 600;
+}
+
+.rt-toolbar-btn {
+  padding: 3px 10px;
+  border: 1px solid var(--rt-border);
+  border-radius: 6px;
+  font-size: 11.5px;
+  color: var(--rt-text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.12s ease,
+    color 0.12s ease;
+}
+
+.rt-toolbar-btn:hover:not(:disabled) {
+  color: var(--rt-text);
+}
+
+.rt-toolbar-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.rt-toolbar-btn:focus-visible {
+  outline: 2px solid var(--rt-accent);
+  outline-offset: 1px;
+}
+
+.rt-toolbar-btn.pressed {
+  border-color: var(--rt-accent);
+  color: var(--rt-accent);
+  font-weight: 600;
+}
+
+.rt-toolbar-spacer {
+  flex: 1;
+}
+
+/* Adopted native controls: anchors share the button look */
+
+a.rt-toolbar-btn {
+  text-decoration: none;
+  color: var(--rt-text-muted);
+}
+
+a.rt-toolbar-btn:hover {
+  color: var(--rt-text);
+}
+
+/* Dropdown menus (Download, Chapter Index) */
+
+.rt-toolbar-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.rt-toolbar-menu-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 4px;
+  background: var(--rt-bg);
+  border: 1px solid var(--rt-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.rt-toolbar-menu-item {
+  /* overflow:hidden zeroes the flex auto-min-size, so without this the
+     column flex panel crushes rows instead of scrolling on long lists */
+  flex-shrink: 0;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: var(--rt-text);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt-toolbar-menu-item:hover {
+  background: var(--rt-surface-hover);
+}
