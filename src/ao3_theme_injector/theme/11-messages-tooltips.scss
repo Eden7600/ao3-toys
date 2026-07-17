@@ -1,0 +1,134 @@
+#modal {
+  background: var(--background-color);
+  border: 0;
+  border-radius: 0.5em;
+  color: var(--text-color);
+}
+
+#modal .content {
+  border: 0;
+}
+
+#modal .footer {
+  bottom: 0;
+  height: 44px;
+  left: 0;
+  line-height: 44px;
+  padding: 0.5em 1em;
+  right: 0;
+  position: absolute;
+}
+
+#modal .footer .action.modal-closer {
+  bottom: 1em;
+  position: absolute;
+  right: 1em;
+}
+
+#modal .footer a.action.modal-closer:active {
+  background: var(--button-current-color);
+  border-color: transparent;
+  color: var(--text-link-color);
+}
+
+#modal .footer a.action.modal-closer:hover,
+#modal .footer a.action.modal-closer:focus,
+#modal .footer a.action.modal-closer:visited:hover {
+  background: var(--button-highlight-color);
+  border-color: transparent;
+  color: var(--text-link-color);
+}
+
+.error,
+.comment_error,
+.kudos_error,
+.LV_invalid,
+.LV_invalid_field input.LV_invalid_field:hover,
+input.LV_invalid_field:active,
+textarea.LV_invalid_field:hover,
+textarea.LV_invalid_field:active,
+.qtip-content,
+.system .intro {
+  background: var(--background-color);
+  border-color: var(--ao3-accent-color);
+  color: var(--text-link-color);
+}
+
+.flash,
+.notice {
+  background: transparent;
+  border-color: var(--ao3-accent-color);
+  color: var(--text-color);
+  padding: 0.5em 0.375em;
+}
+
+#outer,
+.javascript,
+#tos_prompt,
+.announcement input[type="submit"] {
+  background: var(--background-color);
+}
+
+form dd.required,
+.event.announcement .userstuff a,
+.filters .expander {
+  color: var(--text-color);
+}
+
+.announcement .userstuff a,
+.announcement .userstuff a:link,
+.announcement .userstuff a:visited:hover {
+  color: var(--ao3-accent-color);
+}
+
+.announcement .userstuff a:visited {
+  color: var(--text-link-visited-color);
+}
+
+.announcement .userstuff a:hover,
+.announcement .userstuff a:focus {
+  color: var(--ao3-accent-color-hover);
+}
+
+.bookmark .status span {
+  border-color: var(--box-border-color);
+}
+
+/* nix white in tooltip dropdown bg */
+.dropdown {
+  background: none;
+}
+
+.mce-container input:focus {
+  background: #f3efec;
+}
+
+/* help buttons get weird in the sidebar so this is a shrink ray */
+.help.symbol.question.modal.modal-attached {
+  font-size: 0.75em;
+}
+
+/* search tooltip adjustments */
+.search [role="tooltip"] {
+  background: var(--background-color);
+  border: 1px solid var(--box-border-color);
+  border-radius: 0.25em;
+  color: var(--text-color);
+  margin: 0.65em auto;
+  padding: 0.25em 0.375em;
+}
+
+/* from reversi */
+.splash .favorite li:nth-of-type(odd) a,
+.ui-datepicker td:hover,
+#tos_prompt .heading,
+#tos_prompt [disabled] {
+  background: var(--background-color-dark);
+}
+
+/* ao3 blue accent on help (?) hover */
+.symbol .question,
+.qtip-content {
+  background: transparent;
+  color: var(--ao3-accent-color);
+}

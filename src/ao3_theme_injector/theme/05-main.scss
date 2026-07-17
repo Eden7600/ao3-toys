@@ -1,0 +1,46 @@
+.splash .module h3 {
+  border: 0;
+  color: var(--ao3-accent-color);
+}
+
+.splash .browse li a,
+.splash .favorite a {
+  border-radius: 0;
+}
+
+.splash .comment .userstuff {
+  margin: inherit;
+}
+
+.splash .favorite li a {
+  background: var(--button-background-color);
+  border: 1px solid transparent;
+}
+
+.splash .favorite li a:hover {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--button-background-color);
+}
+
+.splash .favorite li a:visited {
+  color: var(--text-link-visited-color);
+}
+
+.splash .favorite li:nth-of-type(odd) a:focus,
+.splash .favorite li:nth-of-type(odd) a:hover,
+.splash .favorite li:nth-of-type(odd) a:visited:hover {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--button-background-color);
+}
+
+/* nix news underlines on main splash */
+.splash .news li {
+  border: 0;
+}
+
+/* preserves unread comment padding on splash page */
+.abbreviated h4.byline {
+  padding-left: 83px !important;
+}

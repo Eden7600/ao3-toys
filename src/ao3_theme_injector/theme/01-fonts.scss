@@ -1,0 +1,36 @@
+body,
+input,
+textarea,
+blockquote,
+blockquote.userstuff,
+.blurb blockquote,
+.dropdown,
+.expander,
+.toggled form {
+  /* font choices go here ↓ */
+  font-family: "IBM Plex Sans", "Proxima Nova", "Helvetica Neue", "Lucida Grande", "Lucida Sans Unicode",
+    "GNU Unifont", Verdana, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading,
+.bookmark .user .meta {
+  /* font choices go here ↓ */
+  font-family: "Charter", "IBM Plex Serif", "Palatino", "Georgia", serif;
+}
+
+kbd,
+tt,
+code,
+var,
+pre,
+samp {
+  /* font choices go here ↓ */
+  font-family: "Fira Code", "Source Code Pro", "Menlo", "Monaco", "Consolas", Courier, monospace;
+  font-size: 0.9em;
+}

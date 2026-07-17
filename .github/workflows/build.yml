@@ -1,0 +1,93 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Test, typecheck, lint
+    uses: ./.github/workflows/test.yml
+
+  build:
+    name: Build ${{ matrix.browser }} (${{ matrix.mode }})
+    needs: check
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox]
+        mode: [dev, prod]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build:${{ matrix.mode }}:${{ matrix.browser }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ao3-toys-${{ matrix.browser }}-${{ matrix.mode }}
+          path: dist/${{ matrix.browser }}
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    name: Release if version is new
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ao3-toys-chrome-prod
+          path: dist/chrome
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: ao3-toys-firefox-prod
+          path: dist/firefox
+
+      - name: Read declared version
+        id: version
+        run: |
+          version=$(jq -r .version dist/chrome/manifest.json)
+          firefox_version=$(jq -r .version dist/firefox/manifest.json)
+          if [ "$version" != "$firefox_version" ]; then
+            echo "Chrome ($version) and Firefox ($firefox_version) manifest versions disagree" >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Create release if missing
+        run: |
+          tag="v${{ steps.version.outputs.version }}"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "Release $tag already exists; skipping."
+            exit 0
+          fi
+          (cd dist/chrome && zip -r "../ao3-toys-chrome-$tag.zip" .)
+          (cd dist/firefox && zip -r "../ao3-toys-firefox-$tag.zip" .)
+          gh release create "$tag" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "AO3 Toys $tag" \
+            --generate-notes \
+            dist/ao3-toys-chrome-"$tag".zip \
+            dist/ao3-toys-firefox-"$tag".zip

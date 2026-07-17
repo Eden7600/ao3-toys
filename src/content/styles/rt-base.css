@@ -1,0 +1,160 @@
+/*
+ * Shared base for all shadow-DOM injected UI (see src/content/shadow-host.ts).
+ * Defines the .rt-root reset, the light/dark palettes keyed off [data-theme],
+ * and small primitives (sr-only, toggle switch) reused across features.
+ * Feature stylesheets are concatenated after this one.
+ */
+
+.rt-root {
+  /* Cut off everything the page could pass down through inheritance. */
+  all: initial;
+
+  --rt-bg: #ffffff;
+  --rt-surface: #f4f2f0;
+  --rt-surface-hover: #e9e5e1;
+  --rt-text: #211c19;
+  --rt-text-muted: #6d635c;
+  --rt-border: #d9d2cc;
+  --rt-accent: #990000;
+  --rt-accent-text: #ffffff;
+  --rt-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+
+  position: relative;
+  display: block;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--rt-text);
+}
+
+.rt-root[data-theme="dark"] {
+  --rt-bg: #201c1a;
+  --rt-surface: #2d2825;
+  --rt-surface-hover: #393330;
+  --rt-text: #ece7e3;
+  --rt-text-muted: #a89f98;
+  --rt-border: #453e39;
+  --rt-accent: #b53d3d;
+  --rt-accent-text: #ffffff;
+  --rt-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+.rt-root button,
+.rt-root input,
+.rt-root label {
+  font: inherit;
+}
+
+.rt-root svg {
+  display: block;
+}
+
+/*
+ * Shared raised-button treatment. Every rt button class gets a soft
+ * top-lit gradient and a hairline drop shadow so controls read as
+ * pressable instead of sitting flat on their surface; color-mix against
+ * the palette vars keeps the sheen correct in both themes. Feature
+ * sheets own sizing, borders, and text color — never backgrounds.
+ */
+.rt-toolbar-btn,
+.rt-hide-button,
+.rt-tag-clear,
+.rt-tag-filter-btn,
+.rt-reset-button {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--rt-bg) 86%, #ffffff),
+    var(--rt-bg)
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #ffffff 22%, transparent),
+    0 1px 2px rgba(0, 0, 0, 0.14);
+}
+
+.rt-toolbar-btn:hover:not(:disabled),
+.rt-hide-button:hover:not(:disabled),
+.rt-tag-clear:hover:not(:disabled),
+.rt-tag-filter-btn:hover:not(:disabled),
+.rt-reset-button:hover:not(:disabled) {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--rt-surface-hover) 82%, #ffffff),
+    var(--rt-surface-hover)
+  );
+}
+
+.rt-toolbar-btn:active:not(:disabled),
+.rt-hide-button:active:not(:disabled),
+.rt-tag-clear:active:not(:disabled),
+.rt-tag-filter-btn:active:not(:disabled),
+.rt-reset-button:active:not(:disabled) {
+  background: var(--rt-surface);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+/* Visually hidden but focusable and in the accessibility tree. */
+.rt-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Toggle switch */
+
+.rt-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.rt-toggle-track {
+  position: relative;
+  flex-shrink: 0;
+  width: 32px;
+  height: 18px;
+  background: var(--rt-border);
+  border-radius: 9px;
+  transition: background-color 0.15s ease;
+}
+
+.rt-toggle-track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--rt-bg);
+  transition: transform 0.15s ease;
+}
+
+.rt-toggle input:checked + .rt-toggle-track {
+  background: var(--rt-accent);
+}
+
+.rt-toggle input:checked + .rt-toggle-track::after {
+  transform: translateX(14px);
+}
+
+.rt-toggle input:focus-visible + .rt-toggle-track {
+  outline: 2px solid var(--rt-accent);
+  outline-offset: 2px;
+}
+
+.rt-toggle-label {
+  font-size: 13px;
+  color: var(--rt-text);
+}

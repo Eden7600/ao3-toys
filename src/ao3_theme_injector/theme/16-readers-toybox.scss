@@ -1,0 +1,32 @@
+
+// /* READERS-TOYBOX: Customize work meta group */
+.work.meta.group {
+  background: var(--background-color) !important;
+  border-radius: 0.5em;
+  padding: 2rem;
+  margin-top: 1em;
+}
+
+
+/* READERS-TOYBOX: Workskin Customizer */
+#workskin {
+  border: 1px solid var(--box-border-color-subtle);
+  border-radius: 0.5em;
+  padding: 1em;
+  margin-top: 2em;
+  background: var(--background-color);
+}
+
+.preface.group {
+  border-radius: 0.5em;
+}
+
+#main.chapters-show.region,
+#main.works-show.region {
+  // padding: 0;
+  background: var(--background-color-dark);
+}
+
+.chapters-show.region .flash {
+  background: var(--background-color-dark);
+}

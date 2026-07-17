@@ -1,0 +1,43 @@
+#add_comnent,
+#add_comment div.comment,
+div.comment {
+  border: 0;
+}
+
+#add_comment div.comment,
+fieldset fieldset,
+.comment fieldset,
+.post fieldset fieldset {
+  background: none;
+}
+
+/* pretties up comments */
+li.comment {
+  background: var(--background-color-dark) !important;
+  border: transparent;
+  border-radius: 0.25em;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+}
+
+/* something was misbehaving so this had to happen now it's the next day and i don't remember what it actually does */
+.actions li label {
+  display: revert;
+}
+
+/* scoots comment user icon over + accommodates new comment padding */
+.comment div.icon {
+  margin: -1.5em 0.75em 0.5em 0;
+  border: 0;
+}
+
+.comment h4.byline {
+  margin-top: 0.375em;
+  /* padding: 0 .25em .25em 110px; */
+}
+
+/* new comment padding FINALLY */
+.comment .userstuff {
+  margin: 1em 0;
+  min-height: 3.3em;
+}

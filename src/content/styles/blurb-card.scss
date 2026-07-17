@@ -1,0 +1,125 @@
+/*
+ * Modern card layer for work blurbs on listing pages. Pure CSS over
+ * AO3's native blurb DOM — nothing here may change structure, use
+ * !important, or set display/placement on dl.stats children (see the
+ * modern-blurb-card spec: filters, badges, the hide pipeline, and both
+ * stats layouts all depend on the native markup and cascade).
+ *
+ * Colors come from theme profile variables with AO3-default-skin
+ * fallbacks, so the card works with the custom theme on or off and
+ * follows the selected accent automatically. Selectors are prefixed
+ * with #main so they outrank the theme's #main li.blurb rules by
+ * specificity regardless of injection order.
+ */
+
+#main li.work.blurb.group {
+  background: var(--background-color-dark, #ffffff);
+  border: 1px solid var(--box-border-color-subtle, #e0dad4);
+  border-radius: 12px;
+  padding: 1.1em 1.35em 0.9em;
+  margin: 0 0 1.1em;
+}
+
+/*
+ * Header: replace AO3's absolute-positioning/margin hacks with a grid.
+ * The required-tags symbol block keeps its native internal 2x2 layout
+ * (its 3rd/4th items are absolutely positioned), so the list itself
+ * becomes the positioning anchor. The date-formatter script inserts a
+ * second p.datetime and hides the original — display:none children
+ * create no grid item, so exactly one date occupies the area.
+ */
+#main li.work.blurb.group .header.module {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "symbols title date"
+    "symbols fandoms date";
+  align-items: start;
+  column-gap: 0.9em;
+  row-gap: 0.2em;
+  min-height: 0;
+  margin-bottom: 0.65em;
+}
+
+#main li.work.blurb.group .header ul.required-tags {
+  grid-area: symbols;
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
+#main li.work.blurb.group .header ul.required-tags li span {
+  border-radius: 4px;
+}
+
+#main li.work.blurb.group .header h4.heading {
+  grid-area: title;
+  margin: 0;
+  font-size: 1.15em;
+  line-height: 1.35;
+}
+
+#main li.work.blurb.group .header h5.fandoms {
+  grid-area: fandoms;
+  margin: 0;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+#main li.work.blurb.group .header p.datetime {
+  grid-area: date;
+  position: static;
+  justify-self: end;
+  white-space: nowrap;
+}
+
+/* Tag spacing/density stays as the theme/site set it — only the outer
+   margin adapts to the card (a looser line-height here read as a big
+   density loss) */
+#main li.work.blurb.group ul.tags.commas {
+  margin: 0.5em 0;
+}
+
+#main li.work.blurb.group ul.series {
+  margin: 0.4em 0;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+/* Summary as a quiet inset with an accent bar */
+#main li.work.blurb.group blockquote.userstuff.summary {
+  margin: 0.75em 0 0.9em;
+  padding: 0.5em 0.9em;
+  border-left: 3px solid
+    color-mix(in srgb, var(--ao3-accent-color, #990000) 65%, transparent);
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--text-color, #000000) 4%, transparent);
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+/*
+ * Stats footer: hairline separator, small muted labels, emphasized
+ * values. Typography/spacing only — layout of the pairs belongs to
+ * AO3's default flow or the stacked-stats grid.
+ */
+#main li.work.blurb.group dl.stats {
+  border-top: 1px solid var(--box-border-color-subtle, #e0dad4);
+  margin: 0.9em 0 0;
+  padding-top: 0.6em;
+  font-size: 0.82em;
+  line-height: 1.3;
+}
+
+#main li.work.blurb.group dl.stats dt {
+  font-weight: 400;
+  opacity: 0.65;
+}
+
+#main li.work.blurb.group dl.stats dd {
+  font-weight: 600;
+}
+
+#main li.work.blurb.group dl.stats dd.toybox-stat {
+  color: var(--ao3-accent-color-light, #990000);
+}

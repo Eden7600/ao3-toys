@@ -1,0 +1,114 @@
+// .blurb a.tag,
+// .meta a.tag {
+//   background: #2b2a33;
+//   border: 1px solid transparent;
+//   border-radius: 0.2em;
+//   color: #eee;
+//   display: inline-block;
+//   font-size: 0.9em;
+//   margin: 1px 0;
+//   padding: 1px 3px;
+//   text-decoration: none;
+//   text-overflow: ellipsis;
+// }
+
+a.tag:hover {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--button-current-color);
+}
+
+.blurb .characters a,
+.character.tags li a,
+.character li.added.tag {
+  background: #337e0033;
+  border-color: #337e00;
+  color: var(--text-color);
+}
+
+.blurb .characters a:hover,
+.character.tags li a:hover {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--button-current-color);
+}
+
+.blurb .relationships a,
+.relationship.tags li a,
+.relationship li.added.tag {
+  background: #0e60b033;
+  border-color: #0e60b0;
+  color: var(--text-color);
+}
+
+.blurb .relationships a:hover,
+.relationship.tags li a:hover {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--button-current-color);
+}
+
+// Disabled: It is intended for warnings to have unique colors per each warning
+// However this must be implemented via code, not CSS
+
+// li.warnings a,
+// .warning.tags li a {
+//   background: #8d0203;
+//   border-color: #8d0203;
+//   color: #eee;
+// }
+
+// li.warnings a:hover,
+// .warning.tags li a:hover {
+//   background: #eee;
+//   border-color: #eee;
+//   color: #0b0b0b;
+// }
+
+/* specific to edit work tags page */
+.work.meta .autocomplete li.added.tag {
+  background: var(-button-background-color);
+  border: 1px solid transparent;
+  border-radius: 0.2em;
+  color: var(--text-color);
+  display: inline-block;
+  font-size: 0.9em;
+  margin: 1px 6px 1px 0;
+  overflow: hidden;
+  padding: 1px 2px 1px 9px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+}
+
+.work.meta .category.tags .commas a,
+.work.meta .fandom.tags .commas a,
+.work.meta .rating.tags .commas a {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dotted var(--text-color);
+  border-radius: 0;
+  font-size: revert;
+  margin: revert;
+  padding: 0;
+}
+
+/* De-bubbled rows keep a transparent background, so hover text must stay
+   light — button-current-color here went near-black on the dark page */
+.work.meta .category.tags .commas a:hover,
+.work.meta .category.tags .commas a:visited:hover,
+.work.meta .fandom.tags .commas a:hover,
+.work.meta .fandom.tags .commas a:visited:hover,
+.work.meta .rating.tags .commas a:hover,
+.work.meta .rating.tags .commas a:visited:hover {
+  border-bottom: 1px dotted var(--ao3-accent-color-light);
+  color: var(--ao3-accent-color-light);
+}
+
+/* de-bubble fandom labels in work blurbs/work page */
+.work.meta .category.tags .commas a:visited,
+.work.meta .fandom.tags .commas a:visited,
+.work.meta .rating.tags .commas a:visited {
+  border-bottom: 1px dotted var(--text-link-visited-color);
+  border-radius: 0;
+  color: var(--text-link-visited-color);
+}

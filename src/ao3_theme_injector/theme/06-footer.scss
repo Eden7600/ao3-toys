@@ -1,0 +1,25 @@
+#outer #footer {
+  background: var(--background-color-dark);
+}
+
+#outer .region,
+#footer .group {
+  background: none;
+}
+
+/* nix the top border in the footer */
+#footer {
+  border: 0;
+}
+
+/* ao3 blue accent on hover */
+#footer a:hover,
+#footer a:focus {
+  background: transparent;
+  color: var(--ao3-accent-color);
+}
+
+// /* give the footer nav text a readable pillow */
+// #footer ul.actions {
+//   background-color: var(--background-color);
+// }

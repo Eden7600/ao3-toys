@@ -1,0 +1,102 @@
+.blurb li, .actions>*, .stats>*, .meta ul li {
+	list-style: none;
+	display: inline;
+	padding-left: 0.25em;
+}
+
+legend .action:link {
+  margin: 0 0.5em;
+}
+
+button,
+input[type="submit"],
+.action,
+.action:link,
+.actions a,
+.actions a:link,
+.actions input,
+.actions label,
+.actions button,
+.current,
+.flash.notice .action {
+  background: var(--button-background-color);
+  border-color: transparent;
+  color: var(--text-color);
+}
+
+#outer .current,
+legend .action:link:active,
+input:active[type="submit"],
+a.current,
+label.action:active,
+span.unread,
+span.claimed,
+.action a:active,
+.actions a:active,
+.actions a:active:visited,
+.current a:visited,
+.flash.notice .action:active,
+.flash.notice .action:active:visited,
+.replied,
+.own,
+.draft,
+.draft .unread,
+.child,
+.unwrangled,
+.unreviewed,
+.ui-sortable li:hover {
+  background: var(--button-current-color);
+  border-color: transparent;
+  color: var(--text-link-color);
+}
+
+legend .action:link:hover,
+input:hover[type="submit"],
+label.action:hover,
+input.button:hover,
+.action:hover,
+.action a:hover,
+.action a:link:hover,
+.actions a:focus,
+.actions a:hover,
+.actions a:link:hover,
+.actions a:visited:hover,
+.actions a:focus:visited,
+.actions input:hover,
+.actions input:focus,
+.actions button:hover,
+.flash.notice .action:hover,
+.flash.notice .action:visited:hover,
+.work.index.group .actions li a:hover,
+.work.index.group .actions li a:visited:hover {
+  background: var(--button-highlight-color);
+  border-color: transparent;
+  color: var(--text-link-color);
+}
+
+.actions a:visited,
+.action a:link,
+.action a:visited,
+.blurb h4 a:visited,
+.listbox .heading a:visited {
+  color: var(--text-link-visited-color);
+}
+
+dl.meta {
+  border: 0;
+}
+
+ul.actions,
+p.actions,
+li.actions,
+span.actions,
+fieldset.actions,
+dd.actions {
+  padding: 0.429em 0.25em 0.25em 0;
+  float: right;
+  text-align: center;
+}
+
+.action.top a:active {
+  background: transparent;
+}
