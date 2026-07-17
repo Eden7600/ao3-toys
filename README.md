@@ -100,6 +100,13 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for ho
 
 AO3 Toys does not collect, transmit, or sell any data. All settings, tags, and reading history are stored locally in your browser via extension storage. The `Import / Export` screen lets you back up or move that data yourself.
 
+## Acknowledgements
+
+- The dark theme is adapted from [ReversiPlusPlus](https://github.com/galaxygrotesque/ReversiPlusPlus) by [galaxygrotesque](https://github.com/galaxygrotesque), licensed under GPL-2.0. We're grateful for their work that served as the foundation for our theme implementation.
+- [ao3-enhancements](https://github.com/jsmnbom/ao3-enhancements) by [Jasmin Bom](https://github.com/jsmnbom) was an inspiration for this project.
+
+See [NOTICE.md](NOTICE.md) for full third-party attribution and licensing details.
+
 ## License
 
-AO3 Toys is licensed under the [GNU Affero General Public License v3.0](LICENSE).
+AO3 Toys is licensed under the [GNU Affero General Public License v3.0](LICENSE), with the exception of the theme files adapted from ReversiPlusPlus, which remain under GPL-2.0 — see [NOTICE.md](NOTICE.md).

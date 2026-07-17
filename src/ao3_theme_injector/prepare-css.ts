@@ -14,6 +14,10 @@ import teal from "./theme-profiles/teal.scss?inline";
  * Assembles the theme CSS exactly as injected into AO3: accent profile
  * variables, optional OLED overrides, optional core theme. Shared by the
  * injector entry and the options-page blurb preview.
+ *
+ * The theme itself (./theme and ./theme-profiles) is adapted from
+ * ReversiPlusPlus (https://github.com/galaxygrotesque/ReversiPlusPlus) by
+ * galaxygrotesque, licensed GPL-2.0. See /NOTICE.md.
  */
 export function prepareCss(
   enableTheme: boolean,
