@@ -1,0 +1,284 @@
+// Secondary panes: the user dashboard and the works sort/filter sidebar
+// sit one layer below the page on mantle; listbox indexes raise their
+// content to card level.
+
+#dashboard,
+#dashboard.own {
+  border-color: var(--ctp-surface1);
+}
+
+#dashboard.own {
+  background: var(--ctp-base);
+  border: 0;
+  border-radius: 0.5em;
+  font-size: 0.85em;
+  margin-top: 1.75em;
+  padding: 0.5em;
+}
+
+#dashboard a,
+#dashboard span {
+  color: var(--ctp-text);
+}
+
+#dashboard a:focus,
+#dashboard a:hover {
+  background: var(--ctp-surface0);
+  color: var(--ctp-text);
+}
+
+#dashboard a:active,
+#dashboard .current {
+  background: var(--ctp-accent);
+  border-color: transparent;
+  color: var(--ctp-on-accent);
+}
+
+#dashboard ul {
+  border: 0;
+}
+
+dl.subscription.group dd {
+  background-color: var(--card-background-color);
+}
+
+/** Listboxes and indexes (dashboards, tag pages, stats) **/
+
+/* Default .listbox is a #ddd well with a white-outline shadow; listboxes
+   are UI panes at base with card-level index wells inside */
+.listbox,
+fieldset fieldset.listbox,
+.group.listbox {
+  background: var(--ctp-base);
+  border-color: transparent;
+  border-radius: 0.5em;
+}
+
+.listbox > .heading,
+.listbox .heading a,
+.listbox .heading a:link {
+  color: var(--ctp-text);
+}
+
+.listbox .index,
+.group.listbox .index {
+  background: var(--card-background-color);
+  border-radius: 0.5em;
+}
+
+/* Indented definition rows default to a light-gray stripe */
+dl.index dd {
+  background: transparent;
+}
+
+.statistics .fandom.listbox.group {
+  background: transparent;
+  border: 0;
+  border-radius: 0.5em;
+  margin: 1em 0;
+}
+
+.statistics .fandom ul.index.group {
+  background: var(--card-background-color) !important;
+  border-radius: inherit;
+  padding: 0.15em 0.65em;
+}
+
+.statistics .listbox h5.heading {
+  font-size: 1.1em;
+  margin: 0.75em 0 !important;
+}
+
+.statistics .index dd {
+  margin: 1em 0 0.5em 0 !important;
+}
+
+.statistics .index li {
+  border-radius: inherit;
+  margin: 0.5em 0;
+  padding: 0.5em;
+}
+
+.statistics .index li:nth-of-type(even) {
+  background: var(--ctp-surface0);
+}
+
+/** Sort & filter sidebar **/
+
+#bookmark-filters fieldset,
+#work-filters fieldset {
+  margin: 0 0.65em;
+  padding: 0 0.65em;
+}
+
+#bookmark-filters fieldset dl,
+#work-filters fieldset dl {
+  margin: 0.65em 0;
+}
+
+.filters dt a:hover {
+  color: var(--ctp-text);
+}
+
+form dd.required,
+.filters .expander {
+  color: var(--ctp-text);
+}
+
+/* Autocomplete floats at surface0; selection takes the accent */
+.autocomplete div.dropdown ul {
+  background: var(--ctp-surface0);
+  border-color: var(--ctp-surface1);
+}
+
+.autocomplete .dropdown ul li:hover,
+.autocomplete .dropdown li.selected {
+  background: transparent;
+  color: var(--ctp-accent);
+}
+
+/* Filter checkbox/radio indicators: the defaults are white-gray gradient
+   chips with green/red gradient checked states. Rebuilt on the surface
+   ladder with the palette's semantic hues (background shorthand clears
+   the default gradient images). */
+.filters .indicator:before {
+  background: var(--ctp-surface1);
+  border: 1px solid transparent;
+  color: var(--ctp-overlay1);
+}
+
+.filters input:checked + .indicator:before {
+  border-color: transparent;
+}
+
+.filters [type="checkbox"]:checked + .indicator:before {
+  background: color-mix(in srgb, var(--ctp-green) 25%, var(--ctp-surface1));
+  color: var(--ctp-green);
+}
+
+.filters .exclude [type="checkbox"]:checked + .indicator:before {
+  background: color-mix(in srgb, var(--ctp-red) 25%, var(--ctp-surface1));
+  color: var(--ctp-red);
+}
+
+.filters [type="radio"]:checked + .indicator:before {
+  background: radial-gradient(
+    circle at center,
+    var(--ctp-accent) 0 34%,
+    var(--ctp-surface1) 42%
+  );
+}
+
+/* Replace the sort/filter arrow gifs with unicode arrows */
+.filters .expander,
+.filters .expanded .expander {
+  background: transparent;
+}
+
+.filters .expander::before {
+  content: "\23F5\00A0";
+}
+
+.filters .expanded .expander::before {
+  content: "\23F7\00A0";
+}
+
+.filters button.expander {
+  padding: 0;
+}
+
+#work_crossover li,
+#work_complete li,
+.filters .tags li {
+  padding-left: 0.75em;
+}
+
+form dl dt,
+.filters dt {
+  border-bottom: 0;
+}
+
+form.search input[type="text"] {
+  border-color: var(--ctp-surface1);
+  border-radius: 0.25em;
+}
+
+fieldset,
+form.verbose legend,
+.verbose form legend,
+.filters .group dt.bookmarker {
+  border: 0;
+}
+
+form dl dt,
+form.single fieldset {
+  border-color: var(--ctp-surface1);
+}
+
+/* Structural: the long tail of S&F spacing fixes */
+#collection_filters_title_autocomplete,
+#collection_filters_fandom_autocomplete,
+#bookmark_search_excluded_bookmark_tag_names_autocomplete,
+#bookmark_search_excluded_tag_names_autocomplete,
+#bookmark_search_other_bookmark_tag_names_autocomplete,
+#bookmark_search_other_tag_names_autocomplete,
+#bookmark_search_bookmark_query,
+#bookmark_search_bookmarkable_query,
+#work_search_excluded_tag_names_autocomplete,
+#work_search_other_tag_names_autocomplete,
+#work_search_query,
+#work_search_words_from,
+#work_search_words_to,
+#work_search_date_from,
+#work_search_date_to {
+  padding: 1px 0 1px 0;
+  width: 99%;
+}
+
+#include_rating_tags,
+#exclude_rating_tags,
+#include_archive_warning_tags,
+#exclude_archive_warning_tags,
+#include_category_tags,
+#exclude_category_tags,
+#include_fandom_tags,
+#exclude_fandom_tags,
+#include_character_tags,
+#exclude_character_tags,
+#include_relationship_tags,
+#exclude_relationship_tags,
+#include_freeform_tags,
+#exclude_freeform_tags,
+#include_tag_tags,
+#exclude_tag_tags {
+  font-size: 0.9em;
+}
+
+.filters .group dt.bookmarker,
+.filters .group dt.language,
+.filters .group dt.search,
+.filters .group dt.options {
+  margin: 0.2em 0 0 0;
+  padding: 0.25em 0;
+}
+
+.filters .group dd.language,
+.filters .group dd.search,
+.filters .group dd.options,
+.filters .more dd.search,
+dd.options ul li {
+  margin: 0.2em 0;
+}
+
+dt.include.heading,
+dt.exclude.heading,
+dt.more.heading {
+  margin-bottom: 0.15em;
+}
+
+dd.include.tags.group dl,
+dd.exclude.tags.group dl,
+dd.more.group dl,
+dt.search dd {
+  margin: 0;
+}

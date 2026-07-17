@@ -5,18 +5,26 @@
  * Feature stylesheets are concatenated after this one.
  */
 
+/*
+ * Adopt the theme injector's palette when it's active — classic or
+ * Catppuccin, whichever variable set is on :root. Custom properties
+ * inherit through the shadow boundary (all: initial does not reset
+ * them), so page-level :root variables are visible here; the fallbacks
+ * reproduce the static light/dark palettes for when no theme variables
+ * are present.
+ */
 .rt-root {
   /* Cut off everything the page could pass down through inheritance. */
   all: initial;
 
-  --rt-bg: #ffffff;
-  --rt-surface: #f4f2f0;
-  --rt-surface-hover: #e9e5e1;
-  --rt-text: #211c19;
-  --rt-text-muted: #6d635c;
-  --rt-border: #d9d2cc;
-  --rt-accent: #990000;
-  --rt-accent-text: #ffffff;
+  --rt-bg: var(--box-background-color, #ffffff);
+  --rt-surface: var(--button-background-color, #f4f2f0);
+  --rt-surface-hover: var(--button-highlight-color, #e9e5e1);
+  --rt-text: var(--text-color, #211c19);
+  --rt-text-muted: color-mix(in srgb, var(--rt-text) 62%, var(--rt-bg));
+  --rt-border: var(--box-border-color-subtle, #d9d2cc);
+  --rt-accent: var(--ao3-accent-color, #990000);
+  --rt-accent-text: var(--on-accent-color, #ffffff);
   --rt-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 
   position: relative;
@@ -33,14 +41,12 @@
 }
 
 .rt-root[data-theme="dark"] {
-  --rt-bg: #201c1a;
-  --rt-surface: #2d2825;
-  --rt-surface-hover: #393330;
-  --rt-text: #ece7e3;
-  --rt-text-muted: #a89f98;
-  --rt-border: #453e39;
-  --rt-accent: #b53d3d;
-  --rt-accent-text: #ffffff;
+  --rt-bg: var(--box-background-color, #201c1a);
+  --rt-surface: var(--button-background-color, #2d2825);
+  --rt-surface-hover: var(--button-highlight-color, #393330);
+  --rt-text: var(--text-color, #ece7e3);
+  --rt-border: var(--box-border-color-subtle, #453e39);
+  --rt-accent: var(--ao3-accent-color, #b53d3d);
   --rt-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
 }
 

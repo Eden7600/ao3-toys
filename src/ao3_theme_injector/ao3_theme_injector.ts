@@ -4,7 +4,10 @@ import { prepareCss } from "./prepare-css";
 async function runThemeInjector() {
   const enableTheme = await getSetting("ao3ThemeEnabled");
   const enableOled = await getSetting("ao3ThemeOled");
+  const themeFamily = await getSetting("ao3ThemeFamily");
   const themeAccent = await getSetting("ao3ThemeAccent");
+  const themeFlavor = await getSetting("ao3ThemeFlavor");
+  const themeCatppuccinAccent = await getSetting("ao3ThemeCatppuccinAccent");
 
   // It may be a bit Cargo Cult-y, but I'm replicating some of the logic from DarkReader's
   // theme injector. their dark wizardry is a bit beyond me, but their methodology seems
@@ -16,7 +19,14 @@ async function runThemeInjector() {
   const createNode = (target: HTMLElement) => {
     const styleTag = document.createElement("style");
     styleTag.id = "toybox-theme-injector-style";
-    styleTag.textContent = prepareCss(enableTheme, enableOled, themeAccent);
+    styleTag.textContent = prepareCss({
+      enableTheme,
+      enableOled,
+      family: themeFamily,
+      accent: themeAccent,
+      flavor: themeFlavor,
+      catppuccinAccent: themeCatppuccinAccent,
+    });
     target.appendChild(styleTag);
   };
 

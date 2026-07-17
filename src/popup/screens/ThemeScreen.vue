@@ -3,7 +3,16 @@ import {
   accentProfiles,
   type AccentId,
 } from "@src/ao3_theme_injector/theme-profiles/accents";
+import {
+  catppuccinAccentProfiles,
+  catppuccinFlavors,
+  catppuccinSwatch,
+  type CatppuccinAccentId,
+  type CatppuccinFlavorId,
+  type ThemeFamilyId,
+} from "@src/ao3_theme_injector/theme-profiles/catppuccin";
 import type { Settings } from "@src/common/settings";
+import { computed } from "vue";
 
 const props = defineProps<{
   settings: Settings | null;
@@ -13,6 +22,35 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: "options"): void;
 }>();
+
+const isCatppuccin = computed(
+  () => props.settings?.ao3ThemeFamily === "catppuccin",
+);
+
+// One grid model for both families so the template stays a single loop
+const activeAccents = computed(() => {
+  if (!isCatppuccin.value) {
+    return accentProfiles.map((profile) => ({
+      id: profile.id,
+      label: profile.label,
+      swatch: profile.swatch,
+    }));
+  }
+
+  const flavor = props.settings?.ao3ThemeFlavor ?? "mocha";
+
+  return catppuccinAccentProfiles.map((profile) => ({
+    id: profile.id,
+    label: profile.label,
+    swatch: catppuccinSwatch(flavor, profile.id),
+  }));
+});
+
+const selectedAccent = computed(() =>
+  isCatppuccin.value
+    ? props.settings?.ao3ThemeCatppuccinAccent
+    : props.settings?.ao3ThemeAccent,
+);
 
 const toggleTheme = () => {
   if (!props.settings) return;
@@ -26,8 +64,22 @@ const toggleOled = () => {
   void props.update({ ao3ThemeOled: !props.settings.ao3ThemeOled });
 };
 
-const pickAccent = (accent: AccentId) => {
-  void props.update({ ao3ThemeAccent: accent });
+const pickFamily = (family: ThemeFamilyId) => {
+  void props.update({ ao3ThemeFamily: family });
+};
+
+const pickFlavor = (flavor: CatppuccinFlavorId) => {
+  void props.update({ ao3ThemeFlavor: flavor });
+};
+
+const pickAccent = (accent: string) => {
+  if (isCatppuccin.value) {
+    void props.update({
+      ao3ThemeCatppuccinAccent: accent as CatppuccinAccentId,
+    });
+  } else {
+    void props.update({ ao3ThemeAccent: accent as AccentId });
+  }
 };
 </script>
 
@@ -50,9 +102,7 @@ const pickAccent = (accent: AccentId) => {
       </span>
       <span
         class="relative w-9 h-5 rounded-full flex-shrink-0 transition-colors"
-        :class="
-          settings?.ao3ThemeEnabled ? 'bg-primary-600' : 'bg-surface-700'
-        "
+        :class="settings?.ao3ThemeEnabled ? 'bg-primary-600' : 'bg-surface-700'"
         aria-hidden="true"
       >
         <span
@@ -65,16 +115,16 @@ const pickAccent = (accent: AccentId) => {
     <button
       role="switch"
       :aria-checked="settings?.ao3ThemeOled ?? false"
-      :disabled="!settings || !settings.ao3ThemeEnabled"
+      :disabled="!settings || !settings.ao3ThemeEnabled || isCatppuccin"
       class="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-surface-900 transition-colors disabled:opacity-50"
       @click="toggleOled"
     >
       <i class="pi pi-circle-fill text-gray-400 text-sm w-4"></i>
       <span class="flex-1 min-w-0">
         <span class="block text-sm font-medium">OLED / high contrast</span>
-        <span class="block text-[11px] text-gray-500 leading-snug"
-          >True-black backgrounds</span
-        >
+        <span class="block text-[11px] text-gray-500 leading-snug">{{
+          isCatppuccin ? "Classic palette only" : "True-black backgrounds"
+        }}</span>
       </span>
       <span
         class="relative w-9 h-5 rounded-full flex-shrink-0 transition-colors"
@@ -89,21 +139,68 @@ const pickAccent = (accent: AccentId) => {
     </button>
   </div>
 
+  <!-- Palette family -->
+  <div class="px-4 py-2.5 border-t border-surface-800">
+    <span class="block text-sm font-medium mb-2">Palette</span>
+    <div class="grid grid-cols-2 gap-2" role="group" aria-label="Palette">
+      <button
+        v-for="family in [
+          { id: 'classic', label: 'Classic' },
+          { id: 'catppuccin', label: 'Catppuccin' },
+        ] as const"
+        :key="family.id"
+        class="py-1.5 rounded-md border text-xs font-medium transition-colors disabled:opacity-40"
+        :class="
+          settings?.ao3ThemeFamily === family.id
+            ? 'border-primary-600 bg-surface-800'
+            : 'border-surface-700 hover:bg-surface-800 text-gray-400'
+        "
+        :disabled="!settings || !settings.ao3ThemeEnabled"
+        :aria-pressed="settings?.ao3ThemeFamily === family.id"
+        @click="pickFamily(family.id)"
+      >
+        {{ family.label }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Catppuccin flavor -->
+  <div v-if="isCatppuccin" class="px-4 py-2.5 border-t border-surface-800">
+    <span class="block text-sm font-medium mb-2">Flavor</span>
+    <div class="grid grid-cols-4 gap-2" role="group" aria-label="Flavor">
+      <button
+        v-for="flavor in catppuccinFlavors"
+        :key="flavor.id"
+        class="py-1.5 rounded-md border text-[11px] font-medium transition-colors disabled:opacity-40"
+        :class="
+          settings?.ao3ThemeFlavor === flavor.id
+            ? 'border-primary-600 bg-surface-800'
+            : 'border-surface-700 hover:bg-surface-800 text-gray-400'
+        "
+        :disabled="!settings || !settings.ao3ThemeEnabled"
+        :aria-pressed="settings?.ao3ThemeFlavor === flavor.id"
+        @click="pickFlavor(flavor.id)"
+      >
+        {{ flavor.label }}
+      </button>
+    </div>
+  </div>
+
   <!-- Accent swatches -->
   <div class="px-4 py-2.5 border-t border-surface-800">
     <span class="block text-sm font-medium mb-2">Accent color</span>
     <div class="grid grid-cols-4 gap-2" role="group" aria-label="Accent color">
       <button
-        v-for="profile in accentProfiles"
+        v-for="profile in activeAccents"
         :key="profile.id"
         class="flex flex-col items-center gap-1 py-1.5 rounded-md border transition-colors disabled:opacity-40"
         :class="
-          settings?.ao3ThemeAccent === profile.id
+          selectedAccent === profile.id
             ? 'border-primary-600 bg-surface-800'
             : 'border-surface-700 hover:bg-surface-800'
         "
         :disabled="!settings || !settings.ao3ThemeEnabled"
-        :aria-pressed="settings?.ao3ThemeAccent === profile.id"
+        :aria-pressed="selectedAccent === profile.id"
         @click="pickAccent(profile.id)"
       >
         <span

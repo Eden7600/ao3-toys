@@ -104,4 +104,62 @@ describe("normalizeStoredSettings", () => {
 
     expect("ao3ThemeCustom" in normalized).toBe(false);
   });
+
+  it("defaults pre-family storage to classic with the accent preserved", () => {
+    const normalized = normalizeStoredSettings({ ao3ThemeAccent: "teal" });
+
+    expect(normalized.ao3ThemeFamily).toBe("classic");
+    expect(normalized.ao3ThemeAccent).toBe("teal");
+    expect(normalized.ao3ThemeFlavor).toBe("mocha");
+    expect(normalized.ao3ThemeCatppuccinAccent).toBe("mauve");
+  });
+
+  it("keeps valid stored family, flavor, and catppuccin accent", () => {
+    const normalized = normalizeStoredSettings({
+      ao3ThemeFamily: "catppuccin",
+      ao3ThemeFlavor: "latte",
+      ao3ThemeCatppuccinAccent: "sapphire",
+    });
+
+    expect(normalized.ao3ThemeFamily).toBe("catppuccin");
+    expect(normalized.ao3ThemeFlavor).toBe("latte");
+    expect(normalized.ao3ThemeCatppuccinAccent).toBe("sapphire");
+  });
+
+  it("coerces invalid family, flavor, and catppuccin accent independently", () => {
+    const normalized = normalizeStoredSettings({
+      ao3ThemeFamily: "nord",
+      ao3ThemeFlavor: "espresso",
+      ao3ThemeCatppuccinAccent: "amber",
+    });
+
+    expect(normalized.ao3ThemeFamily).toBe("classic");
+    expect(normalized.ao3ThemeFlavor).toBe("mocha");
+    expect(normalized.ao3ThemeCatppuccinAccent).toBe("mauve");
+  });
+
+  it("preserves both accent choices across a family switch", () => {
+    const normalized = normalizeStoredSettings({
+      ao3ThemeFamily: "classic",
+      ao3ThemeAccent: "pink",
+      ao3ThemeFlavor: "frappe",
+      ao3ThemeCatppuccinAccent: "peach",
+    });
+
+    expect(normalized.ao3ThemeAccent).toBe("pink");
+    expect(normalized.ao3ThemeFlavor).toBe("frappe");
+    expect(normalized.ao3ThemeCatppuccinAccent).toBe("peach");
+  });
+
+  it("coerces an invalid classic accent without touching catppuccin keys", () => {
+    const normalized = normalizeStoredSettings({
+      ao3ThemeAccent: "amber",
+      ao3ThemeFamily: "catppuccin",
+      ao3ThemeCatppuccinAccent: "teal",
+    });
+
+    expect(normalized.ao3ThemeAccent).toBe(defaultSettings.ao3ThemeAccent);
+    expect(normalized.ao3ThemeFamily).toBe("catppuccin");
+    expect(normalized.ao3ThemeCatppuccinAccent).toBe("teal");
+  });
 });

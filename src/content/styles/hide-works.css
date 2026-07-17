@@ -3,31 +3,7 @@
  * shadow root. Appended after rt-base.css.
  */
 
-/*
- * Adopt the theme injector's palette when it's active. Custom properties
- * inherit through the shadow boundary (all: initial does not reset them),
- * so page-level :root variables are visible here; the fallbacks reproduce
- * the rt-base palette for when theme injection is off.
- */
-.rt-root {
-  --rt-bg: var(--box-background-color, #ffffff);
-  --rt-surface: var(--button-background-color, #f4f2f0);
-  --rt-surface-hover: var(--button-highlight-color, #e9e5e1);
-  --rt-text: var(--text-color, #211c19);
-  --rt-text-muted: color-mix(in srgb, var(--rt-text) 62%, var(--rt-bg));
-  --rt-border: var(--box-border-color-subtle, #d9d2cc);
-  --rt-accent: var(--ao3-accent-color, #990000);
-}
-
-.rt-root[data-theme="dark"] {
-  --rt-bg: var(--box-background-color, #201c1a);
-  --rt-surface: var(--button-background-color, #2d2825);
-  --rt-surface-hover: var(--button-highlight-color, #393330);
-  --rt-text: var(--text-color, #ece7e3);
-  --rt-text-muted: color-mix(in srgb, var(--rt-text) 62%, var(--rt-bg));
-  --rt-border: var(--box-border-color-subtle, #453e39);
-  --rt-accent: var(--ao3-accent-color, #b53d3d);
-}
+/* Theme-variable bridge lives in rt-base.css (shared by all shadow UI). */
 
 .rt-hide-placeholder {
   display: flex;

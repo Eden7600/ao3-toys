@@ -1,0 +1,109 @@
+// Tags: character/relationship bubbles carry their semantic palette hues
+// (green/blue) regardless of accent; hover inverts to text-on-text ground.
+// No !important on properties the tag-highlighter animates.
+
+/* Default a.tag is near-black (#111) — retake it with text so tags stay
+   readable in dark flavors without turning the tag wall link-blue */
+a.tag,
+a.tag:link,
+a.tag:visited {
+  color: var(--ctp-text);
+}
+
+a.tag:hover {
+  background: var(--ctp-text);
+  border-color: var(--ctp-text);
+  color: var(--ctp-base);
+}
+
+/* Tag cloud: the default ramps through dark reds (#200→#900); quiet tags
+   sit at subtext, prominent ones take the accent */
+a.cloud1,
+a.cloud2,
+a.cloud3,
+a.cloud4 {
+  color: var(--ctp-subtext1);
+}
+
+a.cloud5,
+a.cloud6,
+a.cloud7,
+a.cloud8 {
+  color: var(--ctp-accent);
+}
+
+.blurb .characters a,
+.character.tags li a,
+.character li.added.tag {
+  background: color-mix(in srgb, var(--ctp-green) 20%, transparent);
+  border-color: var(--ctp-green);
+  color: var(--ctp-text);
+}
+
+.blurb .characters a:hover,
+.character.tags li a:hover {
+  background: var(--ctp-text);
+  border-color: var(--ctp-text);
+  color: var(--ctp-base);
+}
+
+.blurb .relationships a,
+.relationship.tags li a,
+.relationship li.added.tag {
+  background: color-mix(in srgb, var(--ctp-blue) 20%, transparent);
+  border-color: var(--ctp-blue);
+  color: var(--ctp-text);
+}
+
+.blurb .relationships a:hover,
+.relationship.tags li a:hover {
+  background: var(--ctp-text);
+  border-color: var(--ctp-text);
+  color: var(--ctp-base);
+}
+
+/* Edit-work tags page: staged tags rest on the control ladder */
+.work.meta .autocomplete li.added.tag {
+  background: var(--ctp-surface0);
+  border: 1px solid transparent;
+  border-radius: 0.2em;
+  color: var(--ctp-text);
+  display: inline-block;
+  font-size: 0.9em;
+  margin: 1px 6px 1px 0;
+  overflow: hidden;
+  padding: 1px 2px 1px 9px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+}
+
+/* De-bubbled fandom/category/rating rows keep dotted-underline links */
+.work.meta .category.tags .commas a,
+.work.meta .fandom.tags .commas a,
+.work.meta .rating.tags .commas a {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dotted var(--ctp-text);
+  border-radius: 0;
+  font-size: revert;
+  margin: revert;
+  padding: 0;
+}
+
+.work.meta .category.tags .commas a:hover,
+.work.meta .category.tags .commas a:visited:hover,
+.work.meta .fandom.tags .commas a:hover,
+.work.meta .fandom.tags .commas a:visited:hover,
+.work.meta .rating.tags .commas a:hover,
+.work.meta .rating.tags .commas a:visited:hover {
+  border-bottom: 1px dotted var(--ao3-accent-color-light);
+  color: var(--ao3-accent-color-light);
+}
+
+.work.meta .category.tags .commas a:visited,
+.work.meta .fandom.tags .commas a:visited,
+.work.meta .rating.tags .commas a:visited {
+  border-bottom: 1px dotted var(--text-link-visited-color);
+  border-radius: 0;
+  color: var(--text-link-visited-color);
+}

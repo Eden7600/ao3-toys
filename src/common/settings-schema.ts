@@ -2,6 +2,14 @@ import {
   isAccentId,
   type AccentId,
 } from "@src/ao3_theme_injector/theme-profiles/accents";
+import {
+  isCatppuccinAccentId,
+  isCatppuccinFlavorId,
+  isThemeFamilyId,
+  type CatppuccinAccentId,
+  type CatppuccinFlavorId,
+  type ThemeFamilyId,
+} from "@src/ao3_theme_injector/theme-profiles/catppuccin";
 import { defaultHideModes, type HideModes } from "@src/common/hide-modes";
 import type { ProgressBarPosition } from "@src/common/progress-bar";
 
@@ -31,8 +39,11 @@ export type Settings = {
   ynLastName: string; // Reader's last name for placeholder replacement
 
   ao3ThemeEnabled: boolean;
-  ao3ThemeAccent: AccentId;
-  ao3ThemeOled: boolean;
+  ao3ThemeFamily: ThemeFamilyId; // Palette family: classic profiles or Catppuccin
+  ao3ThemeAccent: AccentId; // Classic-family accent
+  ao3ThemeFlavor: CatppuccinFlavorId; // Catppuccin flavor (light/dark base)
+  ao3ThemeCatppuccinAccent: CatppuccinAccentId; // Catppuccin-family accent
+  ao3ThemeOled: boolean; // Classic-only true-black modifier
   enableProgressBar: boolean; // Show progress bar on works pages
   progressBarPosition: ProgressBarPosition; // Screen edge the progress bar sits on
 
@@ -105,7 +116,10 @@ export const defaultSettings: Settings = {
   ynLastName: "",
 
   ao3ThemeEnabled: true,
+  ao3ThemeFamily: "classic",
   ao3ThemeAccent: "red",
+  ao3ThemeFlavor: "mocha",
+  ao3ThemeCatppuccinAccent: "mauve",
   ao3ThemeOled: false,
 
   enableProgressBar: true,
@@ -172,11 +186,18 @@ type LegacyHideToggles = {
 
 export type StoredSettings = Omit<
   Partial<Settings>,
-  "hideModes" | "ao3ThemeAccent"
+  | "hideModes"
+  | "ao3ThemeAccent"
+  | "ao3ThemeFamily"
+  | "ao3ThemeFlavor"
+  | "ao3ThemeCatppuccinAccent"
 > &
   LegacyHideToggles & {
     hideModes?: Partial<HideModes>;
     ao3ThemeAccent?: string; // May hold an accent id removed with the theme-customization revert
+    ao3ThemeFamily?: string; // Validated against known families on load
+    ao3ThemeFlavor?: string; // Validated against Catppuccin flavors on load
+    ao3ThemeCatppuccinAccent?: string; // Validated against Catppuccin accents on load
     ao3ThemeCustom?: unknown; // Remnant of the reverted theme-customization feature
   };
 
@@ -192,6 +213,9 @@ export function normalizeStoredSettings(
   const {
     hideModes: storedModes,
     ao3ThemeAccent: storedAccent,
+    ao3ThemeFamily: storedFamily,
+    ao3ThemeFlavor: storedFlavor,
+    ao3ThemeCatppuccinAccent: storedCatppuccinAccent,
     ...rest
   } = stored ?? {};
   const modes: HideModes = { ...defaultHideModes, ...storedModes };
@@ -201,6 +225,20 @@ export function normalizeStoredSettings(
   const accent: AccentId = isAccentId(storedAccent)
     ? storedAccent
     : defaultSettings.ao3ThemeAccent;
+
+  // Each theme key validates independently so a bad value in one never
+  // disturbs the others (family switches must preserve both accent choices)
+  const family: ThemeFamilyId = isThemeFamilyId(storedFamily)
+    ? storedFamily
+    : defaultSettings.ao3ThemeFamily;
+  const flavor: CatppuccinFlavorId = isCatppuccinFlavorId(storedFlavor)
+    ? storedFlavor
+    : defaultSettings.ao3ThemeFlavor;
+  const catppuccinAccent: CatppuccinAccentId = isCatppuccinAccentId(
+    storedCatppuccinAccent,
+  )
+    ? storedCatppuccinAccent
+    : defaultSettings.ao3ThemeCatppuccinAccent;
 
   if (stored?.hideLanguages !== undefined) {
     modes.language = stored.hideLanguages
@@ -221,7 +259,10 @@ export function normalizeStoredSettings(
   const settings: Settings = {
     ...defaultSettings,
     ...rest,
+    ao3ThemeFamily: family,
     ao3ThemeAccent: accent,
+    ao3ThemeFlavor: flavor,
+    ao3ThemeCatppuccinAccent: catppuccinAccent,
     hideModes: modes,
   };
   const record = settings as Record<string, unknown>;

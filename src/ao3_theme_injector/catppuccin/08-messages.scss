@@ -1,0 +1,216 @@
+// System messages use the palette's semantic hues — blue notices, yellow
+// cautions, red errors — as tinted cards. Modals and tooltips float at
+// surface0. Splash-page odds and ends live here too.
+
+/* AO3 always renders the flash container; never paint it when empty */
+.flash:empty {
+  display: none;
+}
+
+.flash.notice,
+.notice,
+.comment_notice,
+.kudos_notice,
+ul.notes {
+  background: color-mix(in srgb, var(--ctp-blue) 12%, var(--ctp-crust));
+  border: 0;
+  border-radius: 0.5em;
+  color: var(--ctp-text);
+  padding: 0.5em 0.65em;
+}
+
+.flash.caution,
+.caution {
+  background: color-mix(in srgb, var(--ctp-yellow) 14%, var(--ctp-crust));
+  border: 0;
+  border-radius: 0.5em;
+  color: var(--ctp-text);
+}
+
+.flash.error,
+.alert.flash,
+.error,
+.comment_error,
+.kudos_error {
+  background: color-mix(in srgb, var(--ctp-red) 14%, var(--ctp-crust));
+  border-color: var(--ctp-red);
+  border-radius: 0.5em;
+  color: var(--ctp-text);
+}
+
+.LV_invalid,
+.LV_invalid_field input.LV_invalid_field:hover,
+input.LV_invalid_field:active,
+textarea.LV_invalid_field:hover,
+textarea.LV_invalid_field:active {
+  background: color-mix(in srgb, var(--ctp-red) 14%, var(--ctp-crust));
+  border-color: var(--ctp-red);
+  color: var(--ctp-text);
+}
+
+#modal {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 0.5em;
+  color: var(--ctp-text);
+}
+
+#modal .content {
+  border: 0;
+}
+
+#modal .footer {
+  bottom: 0;
+  height: 44px;
+  left: 0;
+  line-height: 44px;
+  padding: 0.5em 1em;
+  right: 0;
+  position: absolute;
+}
+
+#modal .footer .action.modal-closer {
+  bottom: 1em;
+  position: absolute;
+  right: 1em;
+}
+
+#modal .footer a.action.modal-closer:hover,
+#modal .footer a.action.modal-closer:focus,
+#modal .footer a.action.modal-closer:visited:hover {
+  background: var(--ctp-surface2);
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+#modal .footer a.action.modal-closer:active {
+  background: var(--ctp-accent);
+  border-color: transparent;
+  color: var(--ctp-on-accent);
+}
+
+/* Tooltips and dropdowns float at surface0 */
+.dropdown {
+  background: none;
+}
+
+.search [role="tooltip"],
+.qtip-content,
+.system .intro {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 0.25em;
+  color: var(--ctp-text);
+  margin: 0.65em auto;
+  padding: 0.25em 0.375em;
+}
+
+.symbol .question {
+  background: transparent;
+  color: var(--ctp-accent);
+}
+
+.symbol .question:hover {
+  background: var(--ctp-surface0);
+}
+
+.help.symbol.question.modal.modal-attached {
+  font-size: 0.75em;
+}
+
+/** Announcements **/
+
+/* Default banners: blue info box, red-gradient event, yellow alert —
+   retinted as semantic washes (background shorthand kills the gradients) */
+.announcement .userstuff {
+  background: color-mix(in srgb, var(--ctp-blue) 12%, var(--ctp-crust));
+  border-color: var(--ctp-surface1);
+  color: var(--ctp-text);
+}
+
+.event .userstuff {
+  background: color-mix(in srgb, var(--ctp-accent) 14%, var(--ctp-crust));
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+.alert .userstuff {
+  background: color-mix(in srgb, var(--ctp-yellow) 14%, var(--ctp-crust));
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+.announcement input[type="submit"] {
+  background: var(--ctp-surface1);
+}
+
+.event.announcement .userstuff a {
+  color: var(--ctp-text);
+}
+
+.announcement .userstuff a,
+.announcement .userstuff a:link,
+.announcement .userstuff a:visited:hover {
+  color: var(--ctp-accent);
+}
+
+.announcement .userstuff a:visited {
+  color: var(--text-link-visited-color);
+}
+
+.announcement .userstuff a:hover,
+.announcement .userstuff a:focus {
+  color: var(--ao3-accent-color-light);
+}
+
+/** Splash page **/
+
+.splash .module h3 {
+  border: 0;
+  color: var(--ctp-accent);
+}
+
+.splash .browse li a,
+.splash .favorite a {
+  border-radius: 0;
+}
+
+.splash .comment .userstuff {
+  margin: inherit;
+}
+
+.splash .favorite li a,
+.splash .favorite li:nth-of-type(odd) a {
+  background: var(--ctp-surface0);
+  border: 1px solid transparent;
+}
+
+.splash .favorite li a:hover,
+.splash .favorite li a:visited:hover,
+.splash .favorite li:nth-of-type(odd) a:focus,
+.splash .favorite li:nth-of-type(odd) a:hover,
+.splash .favorite li:nth-of-type(odd) a:visited:hover {
+  background: var(--ctp-surface2);
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+.splash .favorite li a:visited {
+  color: var(--text-link-visited-color);
+}
+
+.splash .news li {
+  border: 0;
+}
+
+.abbreviated h4.byline {
+  padding-left: 83px !important;
+}
+
+/** Datepicker and TOS prompt **/
+
+.ui-datepicker td:hover,
+#tos_prompt .heading,
+#tos_prompt [disabled] {
+  background: var(--ctp-surface0);
+}

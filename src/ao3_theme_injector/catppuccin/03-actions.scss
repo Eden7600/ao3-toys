@@ -1,0 +1,112 @@
+// Interactive ladder: controls rest at surface0, hover elevates to
+// surface1, and the current/selected state is the accent itself with
+// contrast-picked on-accent text (e.g. the current pagination page).
+
+.blurb li,
+.actions > *,
+.stats > *,
+.meta ul li {
+  list-style: none;
+  display: inline;
+  padding-left: 0.25em;
+}
+
+legend .action:link {
+  margin: 0 0.5em;
+}
+
+button,
+input[type="submit"],
+.action,
+.action:link,
+.actions a,
+.actions a:link,
+.actions input,
+.actions label,
+.actions button,
+.flash.notice .action {
+  background: var(--ctp-surface0);
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+legend .action:link:hover,
+input:hover[type="submit"],
+label.action:hover,
+input.button:hover,
+.action:hover,
+.action a:hover,
+.action a:link:hover,
+.actions a:focus,
+.actions a:hover,
+.actions a:link:hover,
+.actions a:visited:hover,
+.actions a:focus:visited,
+.actions input:hover,
+.actions input:focus,
+.actions button:hover,
+.flash.notice .action:hover,
+.flash.notice .action:visited:hover,
+.work.index.group .actions li a:hover,
+.work.index.group .actions li a:visited:hover {
+  background: var(--ctp-surface1);
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+/* Current / selected / pressed: the accent takes over */
+#outer .current,
+a.current,
+.current,
+.current a:visited,
+legend .action:link:active,
+input:active[type="submit"],
+label.action:active,
+.action a:active,
+.actions a:active,
+.actions a:active:visited,
+.flash.notice .action:active,
+.flash.notice .action:active:visited {
+  background: var(--ctp-accent);
+  border-color: transparent;
+  color: var(--ctp-on-accent);
+}
+
+/* Ownership/status rows tint toward the accent instead of taking it over */
+.own,
+.draft,
+.draft .unread,
+.child,
+.unwrangled,
+.unreviewed,
+.replied,
+.ui-sortable li:hover {
+  background: color-mix(in srgb, var(--ctp-accent) 12%, var(--ctp-mantle));
+  border-color: transparent;
+  color: var(--ctp-text);
+}
+
+.actions a:visited,
+.action a:link,
+.action a:visited {
+  color: var(--text-link-visited-color);
+}
+
+dl.meta {
+  border: 0;
+}
+
+ul.actions,
+p.actions,
+li.actions,
+span.actions,
+fieldset.actions,
+dd.actions {
+  padding: 0.429em 0.25em 0.25em 0;
+  float: right;
+  text-align: center;
+}
+
+.action.top a:active {
+  background: transparent;
+}

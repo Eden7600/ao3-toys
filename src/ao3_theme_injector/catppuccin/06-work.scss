@@ -1,0 +1,190 @@
+// Reading page: the work meta group is a raised card, the reading column
+// rests directly on base, notes/summary modules recess to mantle.
+// Comments are cards too.
+
+.work.meta.group {
+  background: var(--card-background-color) !important;
+  border-radius: 0.5em;
+  padding: 2rem;
+  margin-top: 1em;
+}
+
+#workskin {
+  border: 0;
+  padding: 1em;
+  margin-top: 2em;
+  background: transparent;
+}
+
+#main.chapters-show.region,
+#main.works-show.region {
+  background: var(--ctp-crust);
+}
+
+.preface.group {
+  border-radius: 0.5em;
+}
+
+/* Summary and notes recess below the reading pane */
+.notes.module blockquote.userstuff,
+.summary.module blockquote.userstuff {
+  background: var(--ctp-mantle);
+  border-radius: 0.5em;
+  padding: 1em;
+}
+
+/* Default userstuff headings/quotes carry near-black borders and text */
+.userstuff h2 {
+  color: var(--ctp-text);
+}
+
+.userstuff h3 {
+  border-bottom: 1px solid var(--ctp-surface1);
+}
+
+.userstuff blockquote,
+.userstuff address {
+  border-inline-start-color: var(--ctp-overlay0);
+}
+
+#chapters .userstuff pre {
+  font-size: 1em;
+}
+
+div.preface {
+  margin: 1.5em 1em 2em 1em;
+  padding: 0.65em 0.65em 0 0.65em;
+  float: none;
+}
+
+div.preface .module {
+  float: none;
+  margin: 0;
+  padding: 0 0 0.65em;
+  width: auto;
+}
+
+.chapter .preface {
+  border-top: 0px solid;
+}
+
+.preface h3 {
+  background: transparent;
+  border-bottom: 0;
+}
+
+.preface h2.title {
+  display: block;
+  border-bottom: 0;
+  clear: right;
+}
+
+div.preface .title,
+div.preface .byline {
+  border: 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+.byline a {
+  color: var(--ctp-accent);
+}
+
+.byline a:hover {
+  color: var(--ao3-accent-color-light);
+}
+
+.preface a:hover {
+  text-decoration: none;
+}
+
+.preface blockquote {
+  border: 0;
+}
+
+div.preface .notes,
+div.preface .summary,
+div.preface .series,
+div.preface .children {
+  min-height: 5em;
+}
+
+div.preface .series ul,
+div.preface .children ul {
+  padding: 0 0.65em;
+}
+
+div.preface .associations {
+  margin-bottom: 1.5em;
+}
+
+div.preface .jump {
+  margin-top: 1.5em;
+}
+
+div.summary.module {
+  margin-top: 2em;
+}
+
+div.afterword {
+  margin-bottom: 2.5em;
+}
+
+div.afterword .series h3,
+div.afterword .children h3 {
+  border-bottom: none;
+}
+
+/** Comments **/
+
+#add_comment,
+#add_comment div.comment,
+div.comment {
+  border: 0;
+}
+
+#add_comment div.comment,
+fieldset fieldset,
+.comment fieldset,
+.post fieldset fieldset {
+  background: none;
+}
+
+li.comment {
+  background: var(--card-background-color) !important;
+  border: transparent;
+  border-radius: 0.5em;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+}
+
+/* Nested even-thread replies alternate one step down */
+.thread .even li.comment {
+  background: var(--ctp-crust) !important;
+}
+
+.actions li label {
+  display: revert;
+}
+
+.comment div.icon {
+  margin: -1.5em 0.75em 0.5em 0;
+  border: 0;
+}
+
+.comment h4.byline {
+  margin-top: 0.375em;
+  background: transparent;
+  color: var(--ctp-text);
+}
+
+.comment .userstuff {
+  margin: 1em 0;
+  min-height: 3.3em;
+}
+
+/* Kudos row */
+#kudos_message_container .kudos_message,
+#kudos {
+  color: var(--ctp-subtext1);
+}
