@@ -19,12 +19,14 @@ AO3 Toybox is a browser extension (Chrome and Firefox) that adds tag highlightin
 
 - **Tag Highlighting** — Give any tag a color so it stands out in listings, or fade and hide the ones you're tired of seeing. Hover a tag anywhere on AO3 and click the dot (or right-click the tag) to configure it on the spot; synonyms are matched automatically.
 - **Regex Tags** — Match whole families of tags with one pattern, so you can highlight or hide every variant without chasing each spelling by hand.
-- **Work Hiding** — Collapse or remove works by excluded tags, language, or crossover count. Each filter can be set to don't hide, collapse to a banner, or remove entirely, and a master switch shows everything again without losing your setup.
-- **Theme** — A full dark theme for AO3 with accent colors and an OLED mode, shown in a live preview as you tweak it.
+- **Work Hiding** — Collapse or remove works by excluded tags, language, crossover count, word count, kudos/hits ratio, words per chapter, podfic, or how much of them you've already read. Each filter can be set to don't hide, collapse to a banner, or remove entirely, and a master switch shows everything again without losing your setup.
+- **Theme** — A full dark theme for AO3 in two families: classic accent colors with an OLED mode, or the complete Catppuccin palette in all four flavors — shown in a live preview as you tweak it. The popup and settings pages dress themselves to match.
 - **Work Listings** — Shape what every work blurb shows: colored date badges, "Completed" labels, extra stats like kudos-per-hit, and tag cleanup.
+- **Reading Times** — Reading-time and "finish at" stats on listings and above each chapter, driven by your reading speed (measure it with the built-in speed test). Finish times keep themselves current while you browse.
+- **Progress Bar** — A reading progress bar on any screen edge, with configurable thickness, fill style, curated colors, chapter markers, an optional percent / time-remaining label, and click-to-jump — measuring the whole work or just the current chapter, previewed live in the settings.
 - **Reading History** — Remembers which works you've visited and how far you got: chapter progress on work pages, visited/subscribed badges and fresh-chapter alerts in listings, an ignore button, and a "pick up where you left off" prompt that returns you to the exact paragraph.
 - **Reading Settings** — A reader panel on every work page for font, size, width, line height, and paragraph spacing, plus a "standardize line breaks" option for works with stray empty lines between paragraphs.
-- **Quick Toggles** — The toolbar popup gives you quick switches for the big features, perfect for turning all hiding off for a browse and back on afterwards.
+- **Quick Toggles** — The toolbar popup gives you quick switches for the big features, perfect for turning all hiding off for a browse and back on afterwards. Theme, hiding, highlighting, and reading-stat changes apply to open AO3 tabs instantly — no reload needed.
 - **Import / Export** — Back up your tags and settings, or move them to another browser, since everything lives locally.
 
 Works on `archiveofourown.org` and its known mirrors/aliases. Know another site running [otwarchive](https://github.com/otwcode/otwarchive) (the software AO3 is built on) that should be supported? Open a PR to add its domain — see [Contributing](#contributing).
@@ -89,7 +91,7 @@ After building, load the appropriate `dist/<browser>` folder as an unpacked/temp
 
 - **TypeScript**, built with **Vite**
 - **Vue 3** for the options page and popup, **Preact** for in-page (content script) UI
-- **Tailwind CSS** + **PrimeVue** for styling and components
+- **Tailwind CSS** for styling, with in-house components built on **Reka UI** primitives
 - **Dexie** (IndexedDB) for local storage
 - **Vitest** for unit tests, **ESLint** + **Prettier** for linting/formatting
 
