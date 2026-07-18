@@ -4,6 +4,7 @@ import {
   formatKudosPerHit,
   formatRatio,
 } from "@src/common/blurb-stats";
+import { ensureFinishAtTicker } from "@src/common/finish-at-ticker";
 import {
   finishReadingAt,
   formatFinishAt,
@@ -90,15 +91,18 @@ export default class RatioStats extends ContentScript {
 
       if (this.settings.showBlurbFinishAt && minutes !== null) {
         const now = new Date();
+        const finishAt = this.appendStat(
+          stats,
+          "toybox-finish-at",
+          "Finish At:",
+          formatFinishAt(finishReadingAt(now, minutes), now),
+        );
 
-        if (
-          this.appendStat(
-            stats,
-            "toybox-finish-at",
-            "Finish At:",
-            formatFinishAt(finishReadingAt(now, minutes), now),
-          )
-        ) {
+        if (finishAt) {
+          // The ticker keeps the clock time current while the tab is
+          // visible; the stat means "if you started now"
+          finishAt.dataset.toyboxFinishMinutes = String(minutes);
+          ensureFinishAtTicker();
           injectedCount++;
         }
       }
@@ -109,16 +113,17 @@ export default class RatioStats extends ContentScript {
 
   /**
    * Append a dt/dd stat pair unless this blurb already carries it —
-   * listings can be re-processed and stats must not duplicate.
+   * listings can be re-processed and stats must not duplicate. Returns
+   * the created dd, or null when the stat already existed.
    */
   private appendStat(
     stats: Element,
     className: string,
     label: string,
     value: string,
-  ): boolean {
+  ): HTMLElement | null {
     if (stats.querySelector(`dd.${className}`)) {
-      return false;
+      return null;
     }
 
     const dt = document.createElement("dt");
@@ -131,6 +136,6 @@ export default class RatioStats extends ContentScript {
 
     stats.append(dt, dd);
 
-    return true;
+    return dd;
   }
 }

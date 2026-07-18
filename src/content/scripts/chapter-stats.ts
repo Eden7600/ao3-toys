@@ -1,4 +1,5 @@
 import { isWorkPage, scrapeCurrentChapter } from "@src/common/ao3";
+import { ensureFinishAtTicker } from "@src/common/finish-at-ticker";
 import { collectChapterBodies } from "@src/common/reading-position";
 import {
   countWords,
@@ -59,8 +60,19 @@ export default class ChapterStats extends ContentScript {
       const now = new Date();
       const line = document.createElement("div");
       line.className = "toybox-chapter-stats";
-      line.textContent = `📖 ${words.toLocaleString()} words · ${formatReadingTime(minutes)} · done by ${formatFinishAt(finishReadingAt(now, minutes), now)}`;
+
+      // The clock time lives in its own tagged span so the ticker can
+      // keep it current without touching the static words/duration text
+      const finishAt = document.createElement("span");
+      finishAt.dataset.toyboxFinishMinutes = String(minutes);
+      finishAt.textContent = formatFinishAt(finishReadingAt(now, minutes), now);
+
+      line.append(
+        `📖 ${words.toLocaleString()} words · ${formatReadingTime(minutes)} · done by `,
+        finishAt,
+      );
       body.before(line);
+      ensureFinishAtTicker();
     }
   }
 
