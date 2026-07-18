@@ -2,9 +2,10 @@
 @import "../assets/css/theme.css";
 
 /* Match the app column so popup-viewport gutters (Firefox Android renders
-   popups as a wide sheet) never flash white */
+   popups as a wide sheet) never flash white; the var follows runtime theme
+   overrides from ui-theme.ts */
 body {
-  background: #0c0a09;
+  background: var(--color-surface-950, #0c0a09);
 }
 
 ::-webkit-scrollbar {
