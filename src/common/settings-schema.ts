@@ -11,7 +11,13 @@ import {
   type ThemeFamilyId,
 } from "@src/ao3_theme_injector/theme-profiles/catppuccin";
 import { defaultHideModes, type HideModes } from "@src/common/hide-modes";
-import type { ProgressBarPosition } from "@src/common/progress-bar";
+import type {
+  ProgressBarColorId,
+  ProgressBarLabelMode,
+  ProgressBarPosition,
+  ProgressBarScope,
+  ProgressBarStyle,
+} from "@src/common/progress-bar";
 
 // Pure settings schema + migration. Storage-facing helpers live in
 // settings.ts; this module stays importable outside extension contexts
@@ -46,6 +52,14 @@ export type Settings = {
   ao3ThemeOled: boolean; // Classic-only true-black modifier
   enableProgressBar: boolean; // Show progress bar on works pages
   progressBarPosition: ProgressBarPosition; // Screen edge the progress bar sits on
+  progressBarThickness: number; // Bar thickness in pixels
+  progressBarOffset: number; // Inset from the anchored screen edge in pixels
+  progressBarStyle: ProgressBarStyle; // Fill look: gradient or flat
+  progressBarColor: ProgressBarColorId; // Fill color: theme accent or a curated palette color
+  progressBarShowChapterMarkers: boolean; // Chapter-boundary ticks on the bar (work scope only)
+  progressBarScope: ProgressBarScope; // Measure the whole work or the chapter in view
+  progressBarLabelMode: ProgressBarLabelMode; // Floating label: none, percent, time left, or both
+  progressBarClickToSeek: boolean; // Clicking the bar scrolls to that point
 
   enableNewTab: boolean; // Convert links to open in new tab
   enableDateBadge: boolean; // Convert dates to color coded badges
@@ -90,6 +104,7 @@ export type Settings = {
   hideWordCountMax: number; // Hide works with more total words (0 = no bound)
 
   enableTagHighlighter: boolean;
+  replaceTagAliases: boolean; // Replace highlighted alias tags with their canonical name
   removeFandomDiscriminator: boolean;
   removeTagSuffixes: boolean;
 };
@@ -124,6 +139,14 @@ export const defaultSettings: Settings = {
 
   enableProgressBar: true,
   progressBarPosition: "top",
+  progressBarThickness: 6,
+  progressBarOffset: 0,
+  progressBarStyle: "gradient",
+  progressBarColor: "accent",
+  progressBarShowChapterMarkers: true,
+  progressBarScope: "work",
+  progressBarLabelMode: "none",
+  progressBarClickToSeek: false,
 
   enableNewTab: true,
   enableDateBadge: true,
@@ -168,6 +191,7 @@ export const defaultSettings: Settings = {
   hideWordCountMax: 0,
 
   enableTagHighlighter: true,
+  replaceTagAliases: true,
   removeFandomDiscriminator: false,
   removeTagSuffixes: false,
 };

@@ -55,7 +55,10 @@ export default class TagHighlighter extends ContentScript {
       return false;
     }
 
-    return this.settings.enableTagHighlighter;
+    // Colors and hiding are decoupled: this script also feeds the hiding
+    // system (excluded-tag work marks, hidden tags), which must keep
+    // working when only the color portion is switched off
+    return this.settings.enableTagHighlighter || this.settings.hideWorks;
   }
 
   async onPreProcess(): Promise<void> {
@@ -220,7 +223,8 @@ export default class TagHighlighter extends ContentScript {
       return;
     }
 
-    const showSummary = this.settings.showTagColorSummary;
+    const showSummary =
+      this.settings.showTagColorSummary && this.settings.enableTagHighlighter;
 
     if (showSummary) {
       this.injectSummaryStyles();
@@ -330,6 +334,12 @@ export default class TagHighlighter extends ContentScript {
       return null;
     }
 
+    // With highlighting off this script only serves the hiding system:
+    // no colors, no alias renames, no summary rollup
+    if (!this.settings.enableTagHighlighter) {
+      return null;
+    }
+
     // First check common tags - O(1) lookup
     const commonTag = this.commonTagsMap.get(tag);
 
@@ -338,7 +348,7 @@ export default class TagHighlighter extends ContentScript {
 
       // Update the text content to the real name if it's an alias; keep
       // the original so a live settings reset can restore it
-      if (commonTag.realName !== tag) {
+      if (this.settings.replaceTagAliases && commonTag.realName !== tag) {
         tagElement.dataset.toyboxOriginalName ??= tag;
         tagElement.textContent = commonTag.realName;
       }

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { progressBarColorOptions } from "@src/common/progress-bar";
+import ProgressBarPreview from "@src/options_ui/components/ProgressBarPreview.vue";
 import ReadingSpeedTest from "@src/options_ui/components/ReadingSpeedTest.vue";
 import SettingsDropdown from "@src/options_ui/components/SettingsDropdown.vue";
 import SettingsNumber from "@src/options_ui/components/SettingsNumber.vue";
@@ -14,6 +16,27 @@ const progressBarPositionOptions = [
   { value: "bottom", label: "Bottom" },
   { value: "left", label: "Left" },
   { value: "right", label: "Right" },
+];
+
+const progressBarStyleOptions = [
+  { value: "gradient", label: "Gradient" },
+  { value: "solid", label: "Solid" },
+];
+
+const progressBarColorPickerOptions = progressBarColorOptions.map(
+  (option) => ({ value: option.id, label: option.label }),
+);
+
+const progressBarScopeOptions = [
+  { value: "work", label: "Whole work" },
+  { value: "chapter", label: "Current chapter" },
+];
+
+const progressBarLabelOptions = [
+  { value: "none", label: "None" },
+  { value: "percent", label: "Percent read" },
+  { value: "time", label: "Time remaining" },
+  { value: "percent-time", label: "Percent + time" },
 ];
 
 const adoptWpm = (wpm: number) => {
@@ -90,21 +113,93 @@ const adoptWpm = (wpm: number) => {
         description="Enabling this option lets you change the font size, line height, and other reading settings directly on the reading page"
       />
       <SettingsToggle
-        v-model="settings.enableProgressBar"
-        label="Show Reading Progress Bar"
-        description="Show a progress bar while reading a work, with markers for chapter boundaries"
-      />
-      <SettingsDropdown
-        v-model="settings.progressBarPosition"
-        label="Progress Bar Position"
-        description="Which edge of the screen the progress bar sits on"
-        :options="progressBarPositionOptions"
-        :disabled="!settings.enableProgressBar"
-      />
-      <SettingsToggle
         v-model="settings.showBottomWorkToolbar"
         label="Repeat Toolbar Below Chapters"
         description="Show the work toolbar again at the bottom of the chapter, so subscribe, bookmark, share, and next chapter are at hand when you finish reading"
+      />
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="px-4 pb-4 bg-surface-900 rounded-lg mt-3">
+    <h2 class="text-xl font-bold text-white pt-4 pb-2">Progress Bar</h2>
+    <p class="text-gray-400 text-sm">
+      The preview below follows every setting — drag the slider to simulate
+      reading, and click the bar to try click-to-jump when it's enabled.
+    </p>
+    <ProgressBarPreview :settings="settings" />
+    <div class="divide-y divide-surface-800 text-white">
+      <SettingsToggle
+        v-model="settings.enableProgressBar"
+        label="Show Reading Progress Bar"
+        description="Show a progress bar along a screen edge while reading a work"
+      />
+      <SettingsDropdown
+        v-model="settings.progressBarPosition"
+        label="Position"
+        description="Which edge of the screen the bar sits on"
+        :options="progressBarPositionOptions"
+        :disabled="!settings.enableProgressBar"
+      />
+      <SettingsNumber
+        v-model="settings.progressBarThickness"
+        label="Thickness"
+        description="Bar thickness in pixels"
+        :min="2"
+        :max="24"
+        :step="1"
+        :disabled="!settings.enableProgressBar"
+      />
+      <SettingsNumber
+        v-model="settings.progressBarOffset"
+        label="Edge Offset"
+        description="Inset from the screen edge in pixels — useful to clear floating browser UI"
+        :min="0"
+        :max="48"
+        :step="2"
+        :disabled="!settings.enableProgressBar"
+      />
+      <SettingsDropdown
+        v-model="settings.progressBarStyle"
+        label="Fill Style"
+        description="A gradient along the reading direction, or a flat fill"
+        :options="progressBarStyleOptions"
+        :disabled="!settings.enableProgressBar"
+      />
+      <SettingsDropdown
+        v-model="settings.progressBarColor"
+        label="Fill Color"
+        description="Follow your theme accent, or pick a fixed color"
+        :options="progressBarColorPickerOptions"
+        :disabled="!settings.enableProgressBar"
+      />
+      <SettingsDropdown
+        v-model="settings.progressBarScope"
+        label="Measure Progress Through"
+        description="Fill against the whole work, or restart the bar for the chapter you're reading"
+        :options="progressBarScopeOptions"
+        :disabled="!settings.enableProgressBar"
+      />
+      <SettingsToggle
+        v-model="settings.progressBarShowChapterMarkers"
+        label="Chapter Markers"
+        description="Tick marks on the bar at chapter boundaries (whole-work measure only)"
+        :disabled="
+          !settings.enableProgressBar || settings.progressBarScope === 'chapter'
+        "
+      />
+      <SettingsDropdown
+        v-model="settings.progressBarLabelMode"
+        label="Progress Label"
+        description="A small label riding the bar: percent read, estimated time remaining at your reading speed, or both"
+        :options="progressBarLabelOptions"
+        :disabled="!settings.enableProgressBar"
+      />
+      <SettingsToggle
+        v-model="settings.progressBarClickToSeek"
+        label="Click to Jump"
+        description="Clicking a point on the bar scrolls the page to that part of the work"
+        :disabled="!settings.enableProgressBar"
       />
     </div>
   </div>

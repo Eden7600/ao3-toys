@@ -126,6 +126,11 @@ const tagColorSummaryStyleOptions = [
         :disabled="!settings.showTagColorSummary"
       />
       <SettingsToggle
+        v-model="settings.replaceTagAliases"
+        label="Replace Alias Tags with Canonical Name"
+        description="Rename highlighted tags to the canonical name from your Highlighted Tags list (e.g. an alias becomes its real tag)"
+      />
+      <SettingsToggle
         v-model="settings.removeFandomDiscriminator"
         label="Remove Fandom Discriminators"
         description="Remove text in parentheses from tags (e.g., 'TommyInnit (Video Blogging RPF)' becomes 'TommyInnit')"

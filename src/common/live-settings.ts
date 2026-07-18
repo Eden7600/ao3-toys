@@ -28,6 +28,7 @@ export const LIVE_CONTENT_SETTING_KEYS = [
   "hideWordCountMax",
   // Tag highlighting
   "enableTagHighlighter",
+  "replaceTagAliases",
   "showTagColorSummary",
   "tagColorSummaryStyle",
   // Blurb and chapter stats
@@ -37,6 +38,17 @@ export const LIVE_CONTENT_SETTING_KEYS = [
   "showBlurbFinishAt",
   "readingWpm",
   "enableChapterStats",
+  // Reading progress bar
+  "enableProgressBar",
+  "progressBarPosition",
+  "progressBarThickness",
+  "progressBarOffset",
+  "progressBarStyle",
+  "progressBarColor",
+  "progressBarShowChapterMarkers",
+  "progressBarScope",
+  "progressBarLabelMode",
+  "progressBarClickToSeek",
 ] as const satisfies ReadonlyArray<keyof Settings>;
 
 export const LIVE_SETTING_KEYS = [
