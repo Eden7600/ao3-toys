@@ -1,9 +1,9 @@
 /*
- * Design tokens for the extension UIs, replacing the palettes that used
- * to come from tailwindcss-primeui. `surface` is Tailwind's stone scale,
- * `primary` its red scale — generates bg-surface-900, text-primary-400,
- * etc. Dark mode follows prefers-color-scheme (Tailwind's default
- * `dark:` variant).
+ * Design tokens for the extension UIs. `surface` is Tailwind's stone
+ * scale, `primary` its red scale — generates bg-surface-900,
+ * text-primary-400, etc. ui-theme.ts overrides these at runtime to
+ * follow the selected AO3 theme. Dark mode follows prefers-color-scheme
+ * (Tailwind's default `dark:` variant).
  */
 @theme {
   --color-primary-50: #fef2f2;

@@ -12,8 +12,7 @@ const open = computed({
   },
 });
 
-// Closing by any means other than Accept counts as a rejection, matching
-// the PrimeVue service this replaced.
+// Closing by any means other than Accept counts as a rejection
 const dismiss = () => {
   const confirm = pendingConfirm.value;
 

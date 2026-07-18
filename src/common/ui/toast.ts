@@ -18,8 +18,7 @@ let nextId = 0;
 
 /**
  * Module-level store: any component (or composable) can add toasts, the
- * single <Toaster /> mounted in App.vue renders them. Same shape as the
- * PrimeVue toast service this replaced.
+ * single <Toaster /> mounted in App.vue renders them.
  */
 export const toasts = ref<ToastMessage[]>([]);
 

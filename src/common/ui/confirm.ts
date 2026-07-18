@@ -11,8 +11,7 @@ export type ConfirmOptions = {
 
 /**
  * Module-level store: `useConfirm().require(...)` queues a confirmation,
- * the single <ConfirmDialog /> mounted in App.vue renders it. Same shape
- * as the PrimeVue confirmation service this replaced.
+ * the single <ConfirmDialog /> mounted in App.vue renders it.
  */
 export const pendingConfirm = ref<ConfirmOptions | null>(null);
 
