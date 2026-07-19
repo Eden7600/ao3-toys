@@ -20,18 +20,21 @@ export default function (): PartialDeep<browser._manifest.WebExtensionManifest> 
     description: "A refined reading experience for AO3",
     author: "Eden7600",
     version: packageJson.version,
+    // Icon paths must not carry a "./" prefix: the Chrome Web Store
+    // validator reports them as missing from the package (the browser
+    // itself resolves either form, so local loads never caught it)
     icons: {
       ...(firefox && {
-        48: "./icons/icon.svg",
-        96: "./icons/icon.svg",
+        48: "icons/icon.svg",
+        96: "icons/icon.svg",
       }),
       ...(chrome && {
-        16: "./icons/icon-16.png",
-        32: "./icons/icon-32.png",
-        48: "./icons/icon-48.png",
-        96: "./icons/icon-96.png",
-        128: "./icons/icon-128.png",
-        256: "./icons/icon-256.png",
+        16: "icons/icon-16.png",
+        32: "icons/icon-32.png",
+        48: "icons/icon-48.png",
+        96: "icons/icon-96.png",
+        128: "icons/icon-128.png",
+        256: "icons/icon-256.png",
       }),
     },
     background: {
@@ -63,12 +66,16 @@ export default function (): PartialDeep<browser._manifest.WebExtensionManifest> 
         run_at: "document_start",
       },
     ],
-    web_accessible_resources: [
-      {
-        resources: ["./icons/icon.svg"],
-        matches: AO3_MATCH_PATTERNS,
-      },
-    ],
+    // Firefox-only: the svg only ships in the Firefox package, and a
+    // declared-but-missing file risks store-validator rejections
+    ...(firefox && {
+      web_accessible_resources: [
+        {
+          resources: ["icons/icon.svg"],
+          matches: AO3_MATCH_PATTERNS,
+        },
+      ],
+    }),
     permissions: ["storage", "unlimitedStorage"],
     host_permissions: AO3_MATCH_PATTERNS,
     ...(firefox && {
