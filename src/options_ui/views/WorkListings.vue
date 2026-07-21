@@ -11,6 +11,12 @@ const tagColorSummaryStyleOptions = [
   { value: "swatch", label: "Blended swatch" },
   { value: "both", label: "Both" },
 ];
+
+const fadeSensitivityOptions = [
+  { value: "conservative", label: "Conservative — only obvious commentary" },
+  { value: "balanced", label: "Balanced" },
+  { value: "aggressive", label: "Aggressive — fade anything doubtful" },
+];
 </script>
 
 <template>
@@ -139,6 +145,18 @@ const tagColorSummaryStyleOptions = [
         v-model="settings.removeTagSuffixes"
         label="Remove Tag Suffixes"
         description="Remove '- Freeform' and '- Fandom' suffixes from tags"
+      />
+      <SettingsToggle
+        v-model="settings.fadeCommentaryTags"
+        label="Fade Commentary Tags"
+        description="Dim tags that read as author commentary ('no beta we die like men') instead of information about the work. Tags mentioning the work's characters, warnings, and fandoms are kept, and tags you highlight or match with a regex are never dimmed"
+      />
+      <SettingsDropdown
+        v-model="settings.fadeCommentarySensitivity"
+        label="Commentary Sensitivity"
+        description="How strong the commentary signal must be before a tag is dimmed"
+        :options="fadeSensitivityOptions"
+        :disabled="!settings.fadeCommentaryTags"
       />
     </div>
   </div>

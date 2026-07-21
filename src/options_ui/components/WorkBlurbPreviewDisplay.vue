@@ -26,6 +26,13 @@ import {
 import type { Settings } from "@src/common/settings";
 import { cleanTagName } from "@src/common/tag-cleaning";
 import {
+  buildKnownNames,
+  FADED_TAG_CLASS,
+  FADED_TAG_CSS,
+  shouldFadeTag,
+  type TagType,
+} from "@src/common/tag-fading";
+import {
   averageTagColor,
   countTagColors,
   formatColorCounts,
@@ -75,8 +82,11 @@ type SampleWork = {
   highlightedTagColors: string[];
 };
 
-// Tags deliberately include fandom discriminators and "- Freeform"/"- Fandom"
-// suffixes so the tag-cleaning toggles visibly change the preview.
+// Tags deliberately include fandom discriminators, "- Freeform"/"- Fandom"
+// suffixes, and commentary tags so the tag-cleaning and tag-fading
+// toggles visibly change the preview. "sephiroth is trying his best okay"
+// mentions a character from the work's own tags, so the commentary
+// classifier keeps it — only the name-free commentary tags fade.
 const SAMPLE_WORKS: SampleWork[] = [
   {
     title: "Man in the Mirror",
@@ -98,7 +108,13 @@ const SAMPLE_WORKS: SampleWork[] = [
     warningsTags: ["No Archive Warnings Apply"],
     relationshipTags: ["Sephiroth & Cloud Strife"],
     characterTags: ["Cloud Strife", "Sephiroth (Compilation of FFVII)"],
-    freeformTags: ["Angst - Freeform", "Hurt/Comfort", "Friendship"],
+    freeformTags: [
+      "Angst - Freeform",
+      "Hurt/Comfort",
+      "Friendship",
+      "sephiroth is trying his best okay",
+      "no beta we die like chocobos",
+    ],
     summary:
       "Cloud is finally attempting to see what else his Jenova cells can do. A shapeshifting accident tips his emotions out of control, and everyone spreads out looking for him as Sephiroth tries desperately to find and connect with him.",
     series: { position: 7, name: "Twilight and Dawn Book II" },
@@ -133,7 +149,12 @@ const SAMPLE_WORKS: SampleWork[] = [
     warningsTags: ["Creator Chose Not To Use Archive Warnings"],
     relationshipTags: ["Sherlock Holmes/John Watson"],
     characterTags: ["Sherlock Holmes", "John Watson (Sherlock Holmes)"],
-    freeformTags: ["Slow Burn", "Enemies to Lovers (eventual)", "Case Fic"],
+    freeformTags: [
+      "Slow Burn",
+      "Enemies to Lovers (eventual)",
+      "Case Fic",
+      "The Author Regrets Nothing And Will Not Be Taking Questions",
+    ],
     summary:
       "A years-long case drags the pair across the continent, and neither of them is willing to say what everyone else already knows.",
     series: null,
@@ -219,30 +240,77 @@ function datetimeHtml(work: SampleWork, settings: Settings): string {
   return `<p class="datetime"${styleAttr}>${escapeHtml(text)}</p>`;
 }
 
-function tagHtml(name: string, settings: Settings): string {
+function tagHtml(
+  name: string,
+  settings: Settings,
+  tagType: TagType,
+  knownNames: readonly string[],
+  previousFaded = false,
+): { html: string; faded: boolean } {
   const label = cleanTagName(name, {
     removeFandomDiscriminator: settings.removeFandomDiscriminator,
     removeTagSuffixes: settings.removeTagSuffixes,
   });
 
-  return `<a class="tag" href="#">${escapeHtml(label)}</a>`;
+  // Mirrors the clean-tags content script: classify on the original text,
+  // display the cleaned one
+  const faded =
+    settings.fadeCommentaryTags &&
+    shouldFadeTag(name, settings.fadeCommentarySensitivity, {
+      tagType,
+      knownNames,
+      previousFaded,
+    });
+  const classAttr = faded ? `tag ${FADED_TAG_CLASS}` : "tag";
+
+  return {
+    html: `<a class="${classAttr}" href="#">${escapeHtml(label)}</a>`,
+    faded,
+  };
+}
+
+// Mirrors the clean-tags content script's per-blurb name scrape
+function workKnownNames(work: SampleWork): string[] {
+  return buildKnownNames([
+    ...work.relationshipTags,
+    ...work.characterTags,
+    ...work.fandoms,
+  ]);
 }
 
 function tagListHtml(work: SampleWork, settings: Settings): string {
+  const knownNames = workKnownNames(work);
+
+  // Freeforms chain conversation momentum like the content script does
+  let previousFaded = false;
+  const freeformItems = work.freeformTags.map((tag) => {
+    const { html, faded } = tagHtml(
+      tag,
+      settings,
+      "freeform",
+      knownNames,
+      previousFaded,
+    );
+
+    previousFaded = faded;
+
+    return `<li class="freeforms">${html}</li>`;
+  });
+
   const items = [
     ...work.warningsTags.map(
       (tag) =>
-        `<li class="warnings"><strong>${tagHtml(tag, settings)}</strong></li>`,
+        `<li class="warnings"><strong>${tagHtml(tag, settings, "warning", knownNames).html}</strong></li>`,
     ),
     ...work.relationshipTags.map(
-      (tag) => `<li class="relationships">${tagHtml(tag, settings)}</li>`,
+      (tag) =>
+        `<li class="relationships">${tagHtml(tag, settings, "relationship", knownNames).html}</li>`,
     ),
     ...work.characterTags.map(
-      (tag) => `<li class="characters">${tagHtml(tag, settings)}</li>`,
+      (tag) =>
+        `<li class="characters">${tagHtml(tag, settings, "character", knownNames).html}</li>`,
     ),
-    ...work.freeformTags.map(
-      (tag) => `<li class="freeforms">${tagHtml(tag, settings)}</li>`,
-    ),
+    ...freeformItems,
   ];
 
   return `<ul class="tags commas">${items.join("")}</ul>`;
@@ -363,7 +431,7 @@ function blurbHtml(work: SampleWork, settings: Settings): string {
     .join("");
 
   const fandoms = work.fandoms
-    .map((fandom) => tagHtml(fandom, settings))
+    .map((fandom) => tagHtml(fandom, settings, "fandom", []).html)
     .join(", ");
 
   const series = work.series
@@ -429,6 +497,7 @@ const srcdoc = computed(() => {
 <style>${statLayoutCss}</style>
 <style>${blurbCardCss}</style>
 <style>${tagColorSummaryCss}</style>
+<style>${FADED_TAG_CSS}</style>
 </head>
 <body>
 <div id="outer" class="wrapper">

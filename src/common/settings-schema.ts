@@ -18,6 +18,7 @@ import type {
   ProgressBarScope,
   ProgressBarStyle,
 } from "@src/common/progress-bar";
+import type { FadeSensitivity } from "@src/common/tag-fading";
 
 // Pure settings schema + migration. Storage-facing helpers live in
 // settings.ts; this module stays importable outside extension contexts
@@ -61,7 +62,6 @@ export type Settings = {
   progressBarLabelMode: ProgressBarLabelMode; // Floating label: none, percent, time left, or both
   progressBarClickToSeek: boolean; // Clicking the bar scrolls to that point
 
-  enableNewTab: boolean; // Convert links to open in new tab
   enableDateBadge: boolean; // Convert dates to color coded badges
   enableDateNaturalLanguage: boolean; // Convert dates to natural language
   showCompletedText: boolean; // Show "Completed" text for completed works instead of date
@@ -107,6 +107,8 @@ export type Settings = {
   replaceTagAliases: boolean; // Replace highlighted alias tags with their canonical name
   removeFandomDiscriminator: boolean;
   removeTagSuffixes: boolean;
+  fadeCommentaryTags: boolean; // Fade tags that read as author commentary rather than information
+  fadeCommentarySensitivity: FadeSensitivity; // How strong the commentary signal must be before fading
 };
 
 export const defaultSettings: Settings = {
@@ -148,7 +150,6 @@ export const defaultSettings: Settings = {
   progressBarLabelMode: "none",
   progressBarClickToSeek: false,
 
-  enableNewTab: true,
   enableDateBadge: true,
   enableDateNaturalLanguage: true,
   showCompletedText: true,
@@ -194,6 +195,8 @@ export const defaultSettings: Settings = {
   replaceTagAliases: true,
   removeFandomDiscriminator: false,
   removeTagSuffixes: false,
+  fadeCommentaryTags: false,
+  fadeCommentarySensitivity: "balanced",
 };
 
 /**

@@ -37,15 +37,12 @@ Works on `archiveofourown.org` and its known mirrors/aliases. Know another site 
 
 ## Installation
 
-### Firefox
+The recommended way to install AO3 Toybox is from your browser's extension store:
 
-Install it from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/ao3-toybox/) — updates arrive automatically.
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/ao3-toybox/) (Firefox 140 or newer, including Firefox for Android 142 or newer)
+- [Chrome Web Store](https://chromewebstore.google.com/detail/ao3-toybox/kcdcffopbhkekgafpkpkicnbmamhlppc) (Chrome 120 or newer and compatible Chromium browsers)
 
-### Chrome, Edge, Brave, and other Chromium browsers
-
-Install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/ao3-toybox/kcdcffopbhkekgafpkpkicnbmamhlppc) — updates arrive automatically.
-
-Prefer not to use a store? Each [release](https://github.com/Eden7600/ao3-toybox/releases/latest) ships ready-to-load zips for both browsers, and you can build from source and load your own build — see [Development](#development) below.
+Ready-to-load packages for both browsers are also attached to each [GitHub release](https://github.com/Eden7600/ao3-toybox/releases/latest).
 
 ## Development
 
@@ -90,14 +87,6 @@ After building, load the appropriate `dist/<browser>` folder as an unpacked/temp
 2. Click **Load Temporary Add-on…** and select the `manifest.json` inside `dist/firefox`.
 
 Regular Firefox only runs unsigned extensions temporarily; if you're on Firefox Nightly or Developer Edition and want a persistent install of your own build, set `xpinstall.signatures.required` to `false` in `about:config` and install a zipped build directly.
-
-### Tech stack
-
-- **TypeScript**, built with **Vite**
-- **Vue 3** for the options page and popup, **Preact** for in-page (content script) UI
-- **Tailwind CSS** for styling, with in-house components built on **Reka UI** primitives
-- **Dexie** (IndexedDB) for local storage
-- **Vitest** for unit tests, **ESLint** + **Prettier** for linting/formatting
 
 ## Contributing
 
