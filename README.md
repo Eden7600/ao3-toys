@@ -9,8 +9,9 @@ A refined reading experience for [Archive of Our Own](https://archiveofourown.or
 [![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![Latest release](https://img.shields.io/github/v/release/Eden7600/ao3-toybox)](https://github.com/Eden7600/ao3-toybox/releases/latest)
 [![Firefox Add-ons](https://img.shields.io/amo/v/ao3-toybox?label=Firefox%20Add-ons&logo=firefoxbrowser&logoColor=white&color=orange)](https://addons.mozilla.org/en-US/firefox/addon/ao3-toybox/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/kcdcffopbhkekgafpkpkicnbmamhlppc?label=Chrome%20Web%20Store&logo=googlechrome&logoColor=white&color=blue)](https://chromewebstore.google.com/detail/ao3-toybox/kcdcffopbhkekgafpkpkicnbmamhlppc)
 
-**[➜ Install for Firefox](https://addons.mozilla.org/en-US/firefox/addon/ao3-toybox/)**
+**[➜ Install for Firefox](https://addons.mozilla.org/en-US/firefox/addon/ao3-toybox/)** · **[➜ Install for Chrome](https://chromewebstore.google.com/detail/ao3-toybox/kcdcffopbhkekgafpkpkicnbmamhlppc)**
 
 </div>
 
@@ -42,16 +43,9 @@ Install it from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon
 
 ### Chrome, Edge, Brave, and other Chromium browsers
 
-AO3 Toybox isn't on the Chrome Web Store yet, so Chromium browsers install it from the [Releases page](https://github.com/Eden7600/ao3-toybox/releases/latest):
+Install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/ao3-toybox/kcdcffopbhkekgafpkpkicnbmamhlppc) — updates arrive automatically.
 
-1. Download `ao3-toybox-chrome-vX.Y.Z.zip` from the [latest release](https://github.com/Eden7600/ao3-toybox/releases/latest) and unzip it somewhere you'll keep it (deleting the folder later disables the extension).
-2. Go to `chrome://extensions` (or your browser's equivalent extensions page).
-3. Turn on **Developer mode** (top right).
-4. Click **Load unpacked** and select the unzipped folder.
-
-The extension updates when you repeat these steps with a newer release; it won't auto-update on its own.
-
-To build from source and load your own build instead, see [Development](#development) below.
+Prefer not to use a store? Each [release](https://github.com/Eden7600/ao3-toybox/releases/latest) ships ready-to-load zips for both browsers, and you can build from source and load your own build — see [Development](#development) below.
 
 ## Development
 
