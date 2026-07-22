@@ -335,4 +335,15 @@ describe("resolveChapterUrl", () => {
       "/works/123?view_full_work=true#toybox-resume",
     );
   });
+
+  it("falls back when the option value is not a numeric chapter id", () => {
+    document.body.innerHTML = `
+      <select id="selected_id">
+        <option value="../../evil">1. Beginnings</option>
+      </select>`;
+
+    expect(resolveChapterUrl(document, "123", 1)).toBe(
+      "/works/123?view_full_work=true#toybox-resume",
+    );
+  });
 });

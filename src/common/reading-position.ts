@@ -254,9 +254,12 @@ export function resolveChapterUrl(
     return match !== null && parseInt(match[1], 10) === chapter;
   });
   const target = byLabel ?? options.at(chapter - 1);
+  // AO3 chapter ids are numeric; parsing keeps a hostile option value from
+  // smuggling path or URL syntax into a location we navigate to
+  const chapterId = target ? parseInt(target.value, 10) : NaN;
 
-  if (target?.value) {
-    return `/works/${workId}/chapters/${target.value}${RESUME_FRAGMENT}`;
+  if (Number.isFinite(chapterId)) {
+    return `/works/${workId}/chapters/${String(chapterId)}${RESUME_FRAGMENT}`;
   }
 
   return `/works/${workId}?view_full_work=true${RESUME_FRAGMENT}`;

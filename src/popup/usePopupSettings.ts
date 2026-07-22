@@ -1,4 +1,5 @@
 /// <reference types="chrome" />
+import { isAo3Url } from "@src/common/ao3";
 import { isLiveOnlyPatch } from "@src/common/live-settings";
 import {
   getAllSettings,
@@ -85,7 +86,7 @@ export function usePopupSettings(): PopupSettings {
       });
 
       // Url is only exposed for hosts the extension has permission for (AO3)
-      if (tab.id !== undefined && tab.url?.includes("archiveofourown.org")) {
+      if (tab.id !== undefined && isAo3Url(tab.url)) {
         activeAo3TabId.value = tab.id;
       }
     } catch (error) {

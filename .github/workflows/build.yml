@@ -6,6 +6,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+# Jobs that need more (the release job) elevate at the job level
+permissions:
+  contents: read
+
 jobs:
   check:
     name: Test, typecheck, lint

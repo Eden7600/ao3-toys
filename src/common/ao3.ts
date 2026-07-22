@@ -17,6 +17,27 @@ export const AO3_MATCH_PATTERNS: string[] = AO3_DOMAINS.map(
   (domain) => `*://*.${domain}/*`,
 );
 
+/**
+ * Whether a URL's hostname is an AO3 domain or a subdomain of one. A
+ * substring check is not enough: "archiveofourown.org.evil.com" and
+ * "https://evil.com/archiveofourown.org" both contain the domain.
+ */
+export function isAo3Url(url: string | undefined): boolean {
+  if (!url) return false;
+
+  let hostname: string;
+
+  try {
+    hostname = new URL(url).hostname;
+  } catch {
+    return false;
+  }
+
+  return AO3_DOMAINS.some(
+    (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
+  );
+}
+
 // Selectors to find elements on AO3 Pages
 export const AO3_TAG_SELECTOR = "a.tag";
 export const AO3_BLURB_SELECTOR = "li.work.blurb";

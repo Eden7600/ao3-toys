@@ -1,5 +1,6 @@
 import {
   extractWorkIdFromUrl,
+  isAo3Url,
   isWorkPage,
   scrapeCurrentChapter,
 } from "@src/common/ao3";
@@ -13,6 +14,29 @@ function setUrl(url: string): void {
 beforeEach(() => {
   document.body.innerHTML = "";
   setUrl("https://archiveofourown.org/");
+});
+
+describe("isAo3Url", () => {
+  it("matches AO3 domains and their subdomains", () => {
+    expect(isAo3Url("https://archiveofourown.org/works/123")).toBe(true);
+    expect(isAo3Url("http://www.archiveofourown.org/")).toBe(true);
+    expect(isAo3Url("https://ao3.org/")).toBe(true);
+    expect(isAo3Url("https://archive.transformativeworks.org/works")).toBe(
+      true,
+    );
+  });
+
+  it("rejects lookalike hosts that merely contain the domain", () => {
+    expect(isAo3Url("https://archiveofourown.org.evil.com/")).toBe(false);
+    expect(isAo3Url("https://evil.com/archiveofourown.org")).toBe(false);
+    expect(isAo3Url("https://notarchiveofourown.org/")).toBe(false);
+  });
+
+  it("rejects missing and unparsable URLs", () => {
+    expect(isAo3Url(undefined)).toBe(false);
+    expect(isAo3Url("")).toBe(false);
+    expect(isAo3Url("not a url")).toBe(false);
+  });
 });
 
 describe("isWorkPage", () => {
