@@ -185,19 +185,21 @@ const saveEditedTag = async () => {
 const saveNewTag = async () => {
   if (newTag.value.name.trim()) {
     try {
-      newTag.value.aliases = aliasesText.value
-        .split("\n")
-        .map((alias) => alias.trim())
-        .filter((alias) => alias !== "");
-
+      // Build a plain object; spreading the reactive ref would hand Dexie a
+      // Proxy-wrapped aliases array, which structured clone rejects
       const savedTag = {
-        ...newTag.value,
+        id: undefined,
+        name: newTag.value.name.trim(),
+        color: newTag.value.color,
+        aliases: aliasesText.value
+          .split("\n")
+          .map((alias) => alias.trim())
+          .filter((alias) => alias !== ""),
         hideWork: newTag.value.hideWork,
         hideTag: newTag.value.hideTag,
       };
       const id = await db.commonTags.add(savedTag);
-      savedTag.id = id;
-      commonTags.value.push({ ...savedTag });
+      commonTags.value.push({ ...savedTag, id });
       newTagDialog.value = false;
       toast.add({
         severity: "success",
